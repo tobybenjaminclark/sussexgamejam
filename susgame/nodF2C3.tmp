@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://camera.gd" id="1_x12r0"]
 [ext_resource type="Script" path="res://player.gd" id="2_4r6hv"]
-[ext_resource type="PackedScene" uid="uid://cgpikrs8btu85" path="res://santa3.glb" id="3_3xq82"]
+[ext_resource type="PackedScene" uid="uid://k1e188wkgc6s" path="res://santa2.glb" id="3_ncs4l"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_kq87g"]
 
@@ -24,11 +24,8 @@ transform = Transform3D(0.993113, 0, 0, 0, 0.993113, 0, 0, 0, 0.993113, 0, 0.308
 script = ExtResource("1_x12r0")
 target = NodePath("../CharacterBody3D")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.993118, 0, 0, 0, -0.0348672, 0.992505, 0, -0.992505, -0.0348672, 0, 2.04471, 0)
-
 [node name="CharacterBody3D" type="CharacterBody3D" parent="."]
-transform = Transform3D(0.999999, 0, 0, 0, 0.999999, 0, 0, 0, 0.999999, -0.0832849, 1.12209, -0.285727)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0617735, 0)
 motion_mode = 1
 script = ExtResource("2_4r6hv")
 
@@ -39,7 +36,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.106148, 0)
 shape = SubResource("CapsuleShape3D_tt8iy")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="CharacterBody3D"]
-transform = Transform3D(0.993118, 0, 0, 0, 0.993118, 0, 0, 0, 0.993118, -0.0042544, 0.552637, 0.00198454)
+transform = Transform3D(0.993113, 0, 0, 0, 0.993113, 0, 0, 0, 0.993113, -0.0042544, 0.552637, 0.00198454)
 
-[node name="santa3" parent="CharacterBody3D" instance=ExtResource("3_3xq82")]
-transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 0.052246, -1.07049, 0.0932909)
+[node name="santa2" parent="CharacterBody3D" instance=ExtResource("3_ncs4l")]
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, -0.315704, -0.0617735, -0.192436)
