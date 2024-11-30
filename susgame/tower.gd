@@ -32,7 +32,6 @@ func _process(delta):
 
 
 
-# Called when the shoot button is pressed
 func shoot_bullet():
 	var bullet = bullet_scene.instantiate()
 
@@ -60,3 +59,23 @@ func shoot_bullet():
 
 	# Add the bullet to the scene
 	get_tree().current_scene.add_child(bullet)
+
+	# Emit particles from the muzzle node's GPUParticles3D
+	var muzzle_particles = muzzle_node.get_node_or_null("GPUParticles3D")
+	if muzzle_particles:
+		# Start the particle emission
+		muzzle_particles.emitting = true
+		
+		# Optionally, you can stop emitting after a short time (e.g., 0.1 seconds)
+		var timer = Timer.new()
+		timer.wait_time = 0.1
+		timer.one_shot = true
+		timer.timeout.connect(_stop_emitting)
+		muzzle_node.add_child(timer)
+		timer.start()
+
+# The function _stop_emitting is created to stop the particles
+func _stop_emitting():
+	var muzzle_particles = get_node_or_null("MuzzleNode/GPUParticles3D")
+	if muzzle_particles:
+		muzzle_particles.emitting = false

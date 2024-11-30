@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://btks3vl2yjdva"]
+[gd_scene load_steps=26 format=3 uid="uid://btks3vl2yjdva"]
 
 [ext_resource type="Script" path="res://camera.gd" id="1_nmnx0"]
 [ext_resource type="Script" path="res://player.gd" id="2_fwmk0"]
@@ -8,6 +8,7 @@
 [ext_resource type="ArrayMesh" uid="uid://curqt0vakt7dl" path="res://assets/tower_base.obj" id="4_ky75q"]
 [ext_resource type="Texture2D" uid="uid://c1tyrenn48s3e" path="res://assets/tower_head.png" id="5_gx2n8"]
 [ext_resource type="ArrayMesh" uid="uid://bnrtj0eleuson" path="res://assets/tower_head.obj" id="6_3lkkv"]
+[ext_resource type="Texture2D" uid="uid://bawjdyf22dryf" path="res://muzzleflash.png" id="9_638de"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_kq87g"]
 
@@ -22,6 +23,61 @@ albedo_texture = ExtResource("3_u3ksm")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lsll5"]
 albedo_texture = ExtResource("5_gx2n8")
+
+[sub_resource type="Curve" id="Curve_4h7uo"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.707469, 0.833743), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_bkd2d"]
+curve = SubResource("Curve_4h7uo")
+
+[sub_resource type="Gradient" id="Gradient_va7s7"]
+offsets = PackedFloat32Array(0.00452489, 0.549774, 1)
+colors = PackedColorArray(1, 0.0705882, 0, 1, 1, 0.54902, 0, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_um84t"]
+gradient = SubResource("Gradient_va7s7")
+
+[sub_resource type="Curve" id="Curve_8cebb"]
+max_value = 25.0
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.46888, 2.05976), 0.0, 0.0, 0, 0, Vector2(0.840249, 6.93556), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_5pb7t"]
+curve = SubResource("Curve_8cebb")
+
+[sub_resource type="Curve" id="Curve_fuxol"]
+_data = [Vector2(0, 0.376537), 0.0, 0.0, 0, 0, Vector2(0.224066, 0.971225), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_3v767"]
+curve = SubResource("Curve_fuxol")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_84dhk"]
+angle_min = -720.0
+angle_max = 720.0
+gravity = Vector3(0, 0, 0)
+scale_min = 2.0
+scale_max = 4.0
+scale_curve = SubResource("CurveTexture_3v767")
+color = Color(1, 0.427451, 0, 1)
+color_ramp = SubResource("GradientTexture1D_um84t")
+alpha_curve = SubResource("CurveTexture_bkd2d")
+emission_curve = SubResource("CurveTexture_5pb7t")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yi3mo"]
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 1, 0, 1)
+albedo_texture = ExtResource("9_638de")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_dabqd"]
+material = SubResource("StandardMaterial3D_yi3mo")
 
 [node name="Node3D" type="Node3D"]
 transform = Transform3D(1.00693, 0, 0, 0, 1.00693, 0, 0, 0, 1.00693, 0, 0, 0)
@@ -79,3 +135,15 @@ skeleton = NodePath("../../..")
 
 [node name="MuzzleNode" type="Node3D" parent="TowerBase/Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.596558, -2.37428)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="TowerBase/Node3D/MuzzleNode"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0539751, -0.288267)
+emitting = false
+amount = 4
+lifetime = 0.2
+one_shot = true
+explosiveness = 0.1
+randomness = 1.0
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_84dhk")
+draw_pass_1 = SubResource("QuadMesh_dabqd")
