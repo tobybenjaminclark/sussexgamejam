@@ -1,6 +1,9 @@
-﻿using System;
+﻿using Godot;
+using susgame.code.integration;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -28,6 +31,10 @@ namespace susgame.code
 
         private float _y;
 
+        private GDGameEntity _gdEntity;
+
+        private MeshInstance3D _meshEntity;
+
         /// <summary>
         /// X position of the game entitiy, directly tied to the godot object
         /// </summary>
@@ -43,6 +50,7 @@ namespace susgame.code
                 {
                     Location = Location.Map.TileList[(int)_x, (int)_y];
                 }
+                _gdEntity.Position = new Vector3(_x, 0, _y);
             }
         }
 
@@ -62,7 +70,19 @@ namespace susgame.code
                 {
                     Location = Location.Map.TileList[(int)_x, (int)_y];
                 }
+                _gdEntity.Position = new Vector3(_x, 0, _y);
             }
+        }
+
+        protected GameEntity(float x, float y)
+        {
+            // Create the GD game entity
+            _gdEntity = new GDGameEntity();
+            (Engine.GetMainLoop() as SceneTree)?.CurrentScene.AddChild(_gdEntity);
+            _meshEntity = new();
+            _gdEntity.AddChild(_meshEntity);
+            X = x;
+            Y = y;
         }
 
         /// <summary>
