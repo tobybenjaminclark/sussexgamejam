@@ -48,7 +48,9 @@ namespace susgame.code
                 // Moved to a new location
                 if (_x >= Location.X + 1 || _x < Location.X || _y >= Location.Y + 1 || _y < Location.Y)
                 {
+                    Location._contents.Remove(this);
                     Location = Location.Map.TileList[(int)_x, (int)_y];
+                    Location._contents.Add(this);
                 }
                 _gdEntity.Position = new Vector3(_x, 0, _y);
             }
@@ -68,7 +70,9 @@ namespace susgame.code
                 // Moved to a new location
                 if (_x >= Location.X + 1 || _x < Location.X || _y >= Location.Y + 1 || _y < Location.Y)
                 {
+                    Location._contents.Remove(this);
                     Location = Location.Map.TileList[(int)_x, (int)_y];
+                    Location._contents.Add(this);
                 }
                 _gdEntity.Position = new Vector3(_x, 0, _y);
             }
@@ -90,6 +94,7 @@ namespace susgame.code
             x = Math.Clamp(x, 0, map.Width - float.Epsilon);
             y = Math.Clamp(y, 0, map.Height - float.Epsilon);
             Location = map.TileList[(int)_x, (int)_y];
+            Location._contents.Add(this);
             // Create the GD game entity
             _gdEntity = new GDGameEntity();
             _gdEntity.gameEntity = this;

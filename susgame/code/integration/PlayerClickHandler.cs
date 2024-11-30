@@ -11,13 +11,15 @@ namespace susgame.code.integration
     public partial class PlayerClickHandler : Node
     {
 
-        private Conveyor conveyor;
+        //private Conveyor conveyor;
 
         public override void _Ready()
         {
             Map.CreateMap();
-            conveyor = new Conveyor(Map.Current, 0, 0);
+            //conveyor = new Conveyor(Map.Current, 0, 0);
         }
+
+        public int selected = 1;
 
         bool wasmouseclicked = false;
 
@@ -41,14 +43,37 @@ namespace susgame.code.integration
                     Vector3? intersection = plane.IntersectsRay(rayOrigin, rayDirection);
                     if (intersection != null)
                     {
-                        conveyor.X = (int)intersection.Value.X;
-                        conveyor.Y = (int)intersection.Value.Z;
+                        //conveyor.X = (int)intersection.Value.X;
+                        //conveyor.Y = (int)intersection.Value.Z;
                         if (Input.IsMouseButtonPressed(MouseButton.Left) && !wasmouseclicked)
                         {
-                            new Conveyor(Map.Current, (int)intersection.Value.X, (int)intersection.Value.Z);
+                            if ((int)intersection.Value.X < 0 || (int)intersection.Value.Y < 0 || (int)intersection.Value.X > Map.Current.Width || (int)intersection.Value.Y > Map.Current.Height)
+                                return;
+                            if (Map.Current.TileList[(int)intersection.Value.X, (int)intersection.Value.Z].IsOccupied())
+                                return;
+                            switch (selected)
+                            {
+                                case 1:
+                                    new Conveyor(Map.Current, (int)intersection.Value.X, (int)intersection.Value.Z);
+                                    break;
+                                case 2:
+                                    new Creator(Map.Current, (int)intersection.Value.X, (int)intersection.Value.Z);
+                                    break;
+                            }
                         }
                         wasmouseclicked = Input.IsMouseButtonPressed(MouseButton.Left);
                     }
+                }
+            }
+            if (@event is InputEventKey keyEvent)
+            {
+                if (keyEvent.Keycode == Key.Key1)
+                {
+                    selected = 1;
+                }
+                if (keyEvent.Keycode == Key.Key2)
+                {
+                    selected = 2;
                 }
             }
         }

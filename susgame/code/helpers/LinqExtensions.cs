@@ -8,7 +8,8 @@ namespace System.Linq
 
         public static void ForEach<T>(this IEnumerable<T> source, Action<T> functor)
         {
-            foreach (var item in source)
+            // Yes this does a copy, this was modified to be safer since we don't care too much about performance here
+            foreach (var item in source.ToArray())
             {
                 functor(item);
             }
