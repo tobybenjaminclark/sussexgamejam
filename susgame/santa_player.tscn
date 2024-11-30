@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://810mbc8w01w7"]
+
+[ext_resource type="Script" path="res://camera.gd" id="1_fvbpb"]
+[ext_resource type="PackedScene" uid="uid://k1e188wkgc6s" path="res://santa2.glb" id="2_g15a6"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_kq87g"]
+
+[node name="Node3D" type="Node3D"]
+transform = Transform3D(1.00693, 0, 0, 0, 1.00693, 0, 0, 0, 1.00693, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(12.6121, 0, 0, 0, 1, 0, 0, 0, 1.99254, 0, 0, 0)
+mesh = SubResource("PlaneMesh_kq87g")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.993113, 0, 0, 0, 0.993113, 0, 0, 0, 0.993113, 0, 0.308953, 0.307294)
+script = ExtResource("1_fvbpb")
+
+[node name="santa2" parent="." instance=ExtResource("2_g15a6")]
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, -0.315704, 0, -0.192436)
