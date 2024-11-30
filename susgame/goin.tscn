@@ -1,0 +1,32 @@
+[gd_scene load_steps=7 format=3 uid="uid://bemcswrgdpc1b"]
+
+[ext_resource type="Script" path="res://spingoin.gd" id="1_1y553"]
+[ext_resource type="Script" path="res://goin.gd" id="1_363ng"]
+[ext_resource type="Texture2D" path="res://assets/goin.png" id="2_fjeu8"]
+[ext_resource type="ArrayMesh" path="res://assets/goin.obj" id="3_opban"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ylcsy"]
+albedo_texture = ExtResource("2_fjeu8")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_2s4ll"]
+
+[node name="Goin" type="Node3D" groups=["Goin"]]
+script = ExtResource("1_1y553")
+
+[node name="Goin" type="MeshInstance3D" parent="." groups=["Goin"]]
+transform = Transform3D(-1.31134e-08, 0.3, 0, -0.3, -1.31134e-08, 0, 0, 0, 0.3, -0.132579, -0.00895953, -0.00332502)
+material_override = SubResource("StandardMaterial3D_ylcsy")
+mesh = ExtResource("3_opban")
+
+[node name="Area3D" type="Area3D" parent="." groups=["Goin"]]
+script = ExtResource("1_363ng")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" groups=["Goin"]]
+shape = SubResource("SphereShape3D_2s4ll")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." groups=["Goin"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.890494, 0)
+light_color = Color(0, 1, 0, 1)
+light_energy = 2.102
+light_indirect_energy = 1.703
+omni_range = 1.681
