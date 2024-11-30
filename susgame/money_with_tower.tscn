@@ -100,7 +100,7 @@ script = ExtResource("1_oh3nm")
 target = NodePath("../Player")
 
 [node name="Player" type="CharacterBody3D" parent="." node_paths=PackedStringArray("money_label")]
-transform = Transform3D(1.00219, 0, 0, 0, 1.00219, 0, 0, 0, 1.00219, -0.0179383, 0.061774, 0.0112754)
+transform = Transform3D(1.00165, 0, 0, 0, 1.00165, 0, 0, 0, 1.00165, -0.0179383, 0.061774, 0.0112754)
 motion_mode = 1
 script = ExtResource("2_gij1l")
 money_label = NodePath("../CanvasLayer/Label")
@@ -163,4 +163,4 @@ offset_right = 350.0
 offset_bottom = 203.0
 
 [node name="Goin" parent="." instance=ExtResource("11_e57up")]
-transform = Transform3D(0.993118, 0, 0, 0, 0.993118, 0, 0, 0, 0.993118, 3.32206, 1.16793, 0.0154199)
+transform = Transform3D(0.993118, 0, 0, 0, 0.993118, 0, 0, 0, 0.993118, 3.32206, 0.283758, 0.0154199)
