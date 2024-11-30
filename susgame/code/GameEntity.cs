@@ -101,6 +101,7 @@ namespace susgame.code
                 (Engine.GetMainLoop() as SceneTree).ProcessFrame -= value;
                 _gdEntity.AddChild(_meshEntity);
                 Model = _Model;
+                _meshEntity.MaterialOverride = GD.Load<Material>($"res://material.tres");
             };
             (Engine.GetMainLoop() as SceneTree).ProcessFrame += value;
             X = x;

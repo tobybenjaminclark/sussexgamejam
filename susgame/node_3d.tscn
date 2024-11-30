@@ -1,10 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://dx4fo560tnmqe"]
+[gd_scene load_steps=7 format=3 uid="uid://c8mq1tc5gxv7c"]
 
 [ext_resource type="Script" path="res://camera.gd" id="1_x12r0"]
 [ext_resource type="Script" path="res://player.gd" id="2_4r6hv"]
-[ext_resource type="Script" path="res://grinch.gd" id="2_c5pjk"]
 [ext_resource type="PackedScene" uid="uid://cgpikrs8btu85" path="res://santa3.glb" id="3_3xq82"]
-[ext_resource type="PackedScene" uid="uid://cl72j4moek6t5" path="res://grinch.glb" id="3_cx0hl"]
+[ext_resource type="Script" path="res://code/integration/PlayerClickHandler.cs" id="4_74vp4"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_kq87g"]
 
@@ -24,46 +23,27 @@ mesh = SubResource("PlaneMesh_kq87g")
 [node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
 transform = Transform3D(0.993113, 0, 0, 0, 0.993113, 0, 0, 0, 0.993113, 0, 0.308953, 0.307294)
 script = ExtResource("1_x12r0")
-target = NodePath("../Santa")
+target = NodePath("../Player")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.993118, 0, 0, 0, -0.0348672, 0.992505, 0, -0.992505, -0.0348672, 0, 2.04471, 0)
 
-[node name="Grinch" type="CharacterBody3D" parent="."]
-transform = Transform3D(0.999997, 0, 0, 0, 0.999997, 0, 0, 0, 0.999997, 4.21312, 0.5772, -0.571454)
-motion_mode = 1
-script = ExtResource("2_c5pjk")
-
-[node name="RigidBody3D" type="RigidBody3D" parent="Grinch"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.174045)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Grinch"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.106148, 0)
-shape = SubResource("CapsuleShape3D_tt8iy")
-
-[node name="OmniLight3D" type="OmniLight3D" parent="Grinch"]
-transform = Transform3D(0.993118, 0, 0, 0, 0.993118, 0, 0, 0, 0.993118, -0.0042544, 0.552637, 0.00198454)
-
-[node name="Node" type="Node" parent="Grinch"]
-
-[node name="grinch" parent="Grinch" instance=ExtResource("3_cx0hl")]
-transform = Transform3D(-30, 0, -2.62268e-06, 0, 30, 0, 2.62268e-06, 0, -30, -0.238049, -0.529781, 0)
-
-[node name="Santa" type="CharacterBody3D" parent="."]
+[node name="Player" type="CharacterBody3D" parent="."]
 transform = Transform3D(0.999999, 0, 0, 0, 0.999999, 0, 0, 0, 0.999999, -0.0832849, 1.12209, -0.285727)
 motion_mode = 1
 script = ExtResource("2_4r6hv")
 
-[node name="RigidBody3D" type="RigidBody3D" parent="Santa"]
+[node name="RigidBody3D" type="RigidBody3D" parent="Player"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Santa"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.106148, 0)
 shape = SubResource("CapsuleShape3D_tt8iy")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="Santa"]
+[node name="OmniLight3D" type="OmniLight3D" parent="Player"]
 transform = Transform3D(0.993118, 0, 0, 0, 0.993118, 0, 0, 0, 0.993118, -0.0042544, 0.552637, 0.00198454)
 
-[node name="santa3" parent="Santa" instance=ExtResource("3_3xq82")]
+[node name="santa3" parent="Player" instance=ExtResource("3_3xq82")]
 transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 0.052246, -1.07049, 0.0932909)
 
-[node name="Node" type="Node" parent="Santa"]
+[node name="Node" type="Node" parent="Player"]
+script = ExtResource("4_74vp4")
