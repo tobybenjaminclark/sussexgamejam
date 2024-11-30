@@ -1,6 +1,9 @@
-[gd_scene format=3 uid="uid://cvcpniaqjyf53"]
 
-[node name="santa3"]
+[gd_scene load_steps=2 format=3 uid="uid://cw2fctemtwmtf"]
+
+[ext_resource type="PackedScene" uid="uid://cgpikrs8btu85" path="res://santa3.glb" id="1_rgx6s"]
+
+[node name="santa3" instance=ExtResource("1_rgx6s")]
 
 [node name="Skeleton3D" parent="Armature" index="0"]
 bones/0/position = Vector3(0.022457, -0.0229271, -1.6968)

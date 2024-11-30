@@ -10,7 +10,7 @@ namespace susgame.code
     public class Tile : IEnumerable<GameEntity>
     {
 
-        private List<GameEntity> _contents = new List<GameEntity>();
+        internal List<GameEntity> _contents = new List<GameEntity>();
 
         /// <summary>
         /// A list of all items contained on this tile

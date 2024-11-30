@@ -1,3 +1,4 @@
+using susgame.code.machines;
 using System;
 
 namespace susgame.code
@@ -13,6 +14,12 @@ namespace susgame.code
         /// The current loaded map data
         /// </summary>
         public static Map Current { get; private set; }
+
+        public static Map CreateMap()
+        {
+            Current = new Map(40, 10);
+            return Current;
+        }
 
         public Tile[,] TileList { get; }
 

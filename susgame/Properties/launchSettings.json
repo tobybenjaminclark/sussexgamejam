@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "susgame": {
+      "commandName": "Project",
+      "commandLineArgs": "--path \"E:\\\\2024 Projects\\\\sussexgamejam\\\\susgame\" --verbose"
+    }
+  }
+}
