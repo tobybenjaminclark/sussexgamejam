@@ -8,6 +8,7 @@ var santa: Node3D
 @onready var nav_agent: NavigationAgent3D = $NavigationAgent3D  # Adjust the path to your NavigationAgent3D
 
 func _ready() -> void:
+	
 	animation_player = $grinch2/AnimationPlayer
 	santa = get_parent().get_node_or_null("/root/Node3D2/Santa")
 	
