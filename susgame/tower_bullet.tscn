@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://04ygyl54w7je"]
+
+[ext_resource type="Script" path="res://bullet.gd" id="1_251d8"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_elm4m"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_7mfln"]
+
+[node name="TowerBullet" type="RigidBody3D"]
+transform = Transform3D(1, 0.000558347, -0.0003286, -0.000558254, 1, 0.000303949, 0.000328758, -0.000303778, 1, 0, 0, 0)
+script = ExtResource("1_251d8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.0999995, -0.000279453, 0.000174259, 0.00027972, 0.0999995, -0.000152494, -0.00017383, 0.000152983, 0.0999997, 0, 0, 0)
+shape = SubResource("SphereShape3D_elm4m")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.0998755, 0, 0, 0, 0.0998755, 0, 0, 0, 0.0998755, 0, 0, 0)
+mesh = SubResource("SphereMesh_7mfln")
