@@ -25,6 +25,10 @@ window/size/mode=3
 
 project/assembly_name="susgame"
 
+[global_group]
+
+Goin=""
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

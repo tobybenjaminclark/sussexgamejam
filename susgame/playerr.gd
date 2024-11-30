@@ -2,18 +2,17 @@ extends CharacterBody3D
 
 const SPEED: float = 5.0
 const JUMP_VELOCITY: float = 4.5
-const GRAVITY: float = -9.8
 
 var money: int = 0
 
 @export var money_label: Label  # Allows setting the Label path in the Inspector
 
 # Reference to the coin area
-var coin: Area3D  # The coin area will be assigned in the _ready() function
+var coin: Node3D  # The coin area will be assigned in the _ready() function
 
 func _ready() -> void:
 	# Get the reference to the coin node and connect the signal
-	coin = get_parent().get_node("Goin")  # Replace "Coin" with the correct path to your coin node
+	coin = get_parent().get_node("Goin").get_node("Area3D")  # Replace "Coin" with the correct path to your coin node
 	if coin:
 		coin.connect("body_entered", Callable(self, "_on_coin_collected"))
 	else:
@@ -52,6 +51,11 @@ func _physics_process(delta: float) -> void:
 
 # This function is called when the player collides with a coin
 func _on_coin_collected(body: Node) -> void:
-	if body.is_in_group("coin"):  # Check if the body that entered the area is a coin
+	print("collected")
+	print("Collision detected with body:", body.name)
+	print("Groups of body:", body.get_groups())
+	if body.name == "Player": # Check if the body that entered the area is a coin
+		print("yes")
 		add_money(10)  # Add 10 money (you can change this amount)
-		body.queue_free()  # Remove the coin from the scene after being collected
+		money_label.text = str("Money: ", money)  # Update the label text to display the current money
+		coin.get_parent().queue_free()  # Remove the coin from the scene after being collected
