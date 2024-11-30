@@ -1,8 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://covtx5f455gnl"]
+[gd_scene load_steps=29 format=3 uid="uid://covtx5f455gnl"]
 
 [ext_resource type="Script" path="res://camera.gd" id="1_oh3nm"]
 [ext_resource type="Script" path="res://playerr.gd" id="2_ee3qk"]
+[ext_resource type="Texture2D" uid="uid://dbp8qnywugwvu" path="res://assets/tower_base.png" id="4_5wh53"]
+[ext_resource type="ArrayMesh" uid="uid://curqt0vakt7dl" path="res://assets/tower_base.obj" id="5_wavxi"]
+[ext_resource type="Script" path="res://tower.gd" id="6_1gweb"]
+[ext_resource type="PackedScene" uid="uid://df28okax5a6yq" path="res://tower_bullet.tscn" id="7_puhri"]
+[ext_resource type="AudioStream" uid="uid://b48gm2ep2j0te" path="res://gun.mp3" id="8_5xdof"]
+[ext_resource type="Texture2D" uid="uid://c1tyrenn48s3e" path="res://assets/tower_head.png" id="9_lwv34"]
+[ext_resource type="ArrayMesh" uid="uid://bnrtj0eleuson" path="res://assets/tower_head.obj" id="10_ane01"]
 [ext_resource type="PackedScene" uid="uid://dit6qgy37gni1" path="res://goin.tscn" id="11_e57up"]
+[ext_resource type="Texture2D" uid="uid://bawjdyf22dryf" path="res://muzzleflash.png" id="11_tv0km"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_kq87g"]
 
@@ -11,6 +19,69 @@ radius = 0.1
 height = 0.4
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tt8iy"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2kiwr"]
+albedo_texture = ExtResource("4_5wh53")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1bbfh"]
+albedo_texture = ExtResource("9_lwv34")
+
+[sub_resource type="Curve" id="Curve_4yvyf"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.707469, 0.833743), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_bkd2d"]
+curve = SubResource("Curve_4yvyf")
+
+[sub_resource type="Gradient" id="Gradient_2gn1r"]
+offsets = PackedFloat32Array(0.00452489, 0.549774, 1)
+colors = PackedColorArray(1, 0.0705882, 0, 1, 1, 0.54902, 0, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_um84t"]
+gradient = SubResource("Gradient_2gn1r")
+
+[sub_resource type="Curve" id="Curve_e42ko"]
+max_value = 25.0
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.46888, 2.05976), 0.0, 0.0, 0, 0, Vector2(0.840249, 6.93556), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_5pb7t"]
+curve = SubResource("Curve_e42ko")
+
+[sub_resource type="Curve" id="Curve_hbqwi"]
+_data = [Vector2(0, 0.376537), 0.0, 0.0, 0, 0, Vector2(0.224066, 0.971225), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_3v767"]
+curve = SubResource("Curve_hbqwi")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rfr8v"]
+angle_min = -720.0
+angle_max = 720.0
+gravity = Vector3(0, 0, 0)
+scale_min = 2.0
+scale_max = 4.0
+scale_curve = SubResource("CurveTexture_3v767")
+color = Color(1, 0.427451, 0, 1)
+color_ramp = SubResource("GradientTexture1D_um84t")
+alpha_curve = SubResource("CurveTexture_bkd2d")
+emission_curve = SubResource("CurveTexture_5pb7t")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yi3mo"]
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 1, 0, 1)
+albedo_texture = ExtResource("11_tv0km")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_8loc4"]
+material = SubResource("StandardMaterial3D_yi3mo")
+
+[sub_resource type="AudioStream" id="AudioStream_63mfw"]
 
 [node name="Node3D" type="Node3D"]
 transform = Transform3D(1.00693, 0, 0, 0, 1.00693, 0, 0, 0, 1.00693, 1, 0, 0)
@@ -28,7 +99,7 @@ transform = Transform3D(0.993113, 0, 0, 0, 0.993113, 0, 0, 0, 0.993113, 0, 0.308
 script = ExtResource("1_oh3nm")
 target = NodePath("../Player")
 
-[node name="Player" type="CharacterBody3D" parent="." node_paths=PackedStringArray("money_label")]
+[node name="Player" type="CharacterBody3D" parent="." node_paths=PackedStringArray("money_label") groups=["Player"]]
 transform = Transform3D(1.00165, 0, 0, 0, 1.00165, 0, 0, 0, 1.00165, -0.0179383, 0.061774, 0.0112754)
 motion_mode = 1
 script = ExtResource("2_ee3qk")
@@ -47,13 +118,51 @@ shape = SubResource("CapsuleShape3D_tt8iy")
 [node name="Goin" parent="." instance=ExtResource("11_e57up")]
 transform = Transform3D(0.993118, 0, 0, 0, 0.993118, 0, 0, 0, 0.993118, 3.32206, 0.283758, 0.0154199)
 
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(0.993118, 0, 0, 0, -0.887791, -0.445096, 0, 0.445096, -0.887791, 0, 4.07893, 0)
-light_energy = 5.0
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Label" type="Label" parent="CanvasLayer"]
 offset_right = 40.0
 offset_bottom = 23.0
 text = "Money: 0"
+
+[node name="TowerBase" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -6.0556, 0, 2.00151)
+material_override = SubResource("StandardMaterial3D_2kiwr")
+mesh = ExtResource("5_wavxi")
+
+[node name="Node3D" type="Node3D" parent="TowerBase"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.87153, 0)
+script = ExtResource("6_1gweb")
+detection_range = 999.0
+bullet_scene = ExtResource("7_puhri")
+gun_sound = ExtResource("8_5xdof")
+
+[node name="TowerHead" type="MeshInstance3D" parent="TowerBase/Node3D"]
+transform = Transform3D(-1, 0.000131563, -0.000587184, 0.000133063, 0.999997, -0.00256581, 0.000586846, -0.00256589, -0.999997, 0.026062, -0.461343, -1.62176)
+material_override = SubResource("StandardMaterial3D_1bbfh")
+mesh = ExtResource("10_ane01")
+skeleton = NodePath("../../..")
+
+[node name="MuzzleNode" type="Node3D" parent="TowerBase/Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.596558, -2.37428)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="TowerBase/Node3D/MuzzleNode"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0539751, -0.288267)
+emitting = false
+amount = 4
+lifetime = 0.2
+one_shot = true
+explosiveness = 0.1
+randomness = 1.0
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_rfr8v")
+draw_pass_1 = SubResource("QuadMesh_8loc4")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="TowerBase/Node3D"]
+stream = SubResource("AudioStream_63mfw")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.993118, 0, 0, 0, 0.292265, 0.949138, 0, -0.949138, 0.292265, 0, 17.7481, 0)
+
+[node name="Goin2" parent="." instance=ExtResource("11_e57up")]
+transform = Transform3D(0.986283, 0, 0, 0, 0.986283, 0, 0, 0, 0.986283, 6.62126, 0.565563, 0.0307337)

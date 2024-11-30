@@ -28,6 +28,7 @@ project/assembly_name="susgame"
 [global_group]
 
 Goin=""
+Player=""
 
 [rendering]
 

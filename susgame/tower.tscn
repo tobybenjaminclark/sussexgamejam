@@ -1,10 +1,10 @@
-[gd_scene load_steps=28 format=3 uid="uid://btks3vl2yjdva"]
+[gd_scene load_steps=28 format=3 uid="uid://b0mwac6i1kim5"]
 
 [ext_resource type="Script" path="res://camera.gd" id="1_nmnx0"]
 [ext_resource type="Script" path="res://player.gd" id="2_fwmk0"]
 [ext_resource type="Texture2D" uid="uid://dbp8qnywugwvu" path="res://assets/tower_base.png" id="3_u3ksm"]
 [ext_resource type="Script" path="res://tower.gd" id="3_ur7kr"]
-[ext_resource type="PackedScene" uid="uid://04ygyl54w7je" path="res://tower_bullet.tscn" id="4_aa0th"]
+[ext_resource type="PackedScene" uid="uid://df28okax5a6yq" path="res://tower_bullet.tscn" id="4_aa0th"]
 [ext_resource type="ArrayMesh" uid="uid://curqt0vakt7dl" path="res://assets/tower_base.obj" id="4_ky75q"]
 [ext_resource type="Texture2D" uid="uid://c1tyrenn48s3e" path="res://assets/tower_head.png" id="5_gx2n8"]
 [ext_resource type="ArrayMesh" uid="uid://bnrtj0eleuson" path="res://assets/tower_head.obj" id="6_3lkkv"]
@@ -29,14 +29,14 @@ albedo_texture = ExtResource("5_gx2n8")
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.707469, 0.833743), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_bkd2d"]
+[sub_resource type="CurveTexture" id="CurveTexture_j7e7q"]
 curve = SubResource("Curve_4h7uo")
 
 [sub_resource type="Gradient" id="Gradient_va7s7"]
 offsets = PackedFloat32Array(0.00452489, 0.549774, 1)
 colors = PackedColorArray(1, 0.0705882, 0, 1, 1, 0.54902, 0, 1, 1, 1, 1, 0)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_um84t"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_vq7fj"]
 gradient = SubResource("Gradient_va7s7")
 
 [sub_resource type="Curve" id="Curve_8cebb"]
@@ -44,14 +44,14 @@ max_value = 25.0
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.46888, 2.05976), 0.0, 0.0, 0, 0, Vector2(0.840249, 6.93556), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_5pb7t"]
+[sub_resource type="CurveTexture" id="CurveTexture_fvyv2"]
 curve = SubResource("Curve_8cebb")
 
 [sub_resource type="Curve" id="Curve_fuxol"]
 _data = [Vector2(0, 0.376537), 0.0, 0.0, 0, 0, Vector2(0.224066, 0.971225), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_3v767"]
+[sub_resource type="CurveTexture" id="CurveTexture_o054o"]
 curve = SubResource("Curve_fuxol")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_84dhk"]
@@ -60,13 +60,13 @@ angle_max = 720.0
 gravity = Vector3(0, 0, 0)
 scale_min = 2.0
 scale_max = 4.0
-scale_curve = SubResource("CurveTexture_3v767")
+scale_curve = SubResource("CurveTexture_o054o")
 color = Color(1, 0.427451, 0, 1)
-color_ramp = SubResource("GradientTexture1D_um84t")
-alpha_curve = SubResource("CurveTexture_bkd2d")
-emission_curve = SubResource("CurveTexture_5pb7t")
+color_ramp = SubResource("GradientTexture1D_vq7fj")
+alpha_curve = SubResource("CurveTexture_j7e7q")
+emission_curve = SubResource("CurveTexture_fvyv2")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yi3mo"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hllgy"]
 transparency = 1
 vertex_color_use_as_albedo = true
 albedo_color = Color(1, 1, 0, 1)
@@ -78,7 +78,7 @@ particles_anim_v_frames = 1
 particles_anim_loop = false
 
 [sub_resource type="QuadMesh" id="QuadMesh_dabqd"]
-material = SubResource("StandardMaterial3D_yi3mo")
+material = SubResource("StandardMaterial3D_hllgy")
 
 [sub_resource type="AudioStream" id="AudioStream_y4qee"]
 

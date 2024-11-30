@@ -8,11 +8,16 @@ func _ready() -> void:
 
 func _on_player_collected(body: Node) -> void:
 	print("COIN: collision")
+	print(body.get_groups())  # Print out the groups to ensure "Player" is there
 	
 	if body.is_in_group("Player"):  # Check if the entering body is the player
-		var player_script = body.get_script()
-		if player_script and player_script.has_method("add_money"):
-			body.add_money(coin_value)  # Call the `add_money` function in the player script
-		if money_label:
-			money_label.text = "Money: " + str(body.money)  # Update the label
-		queue_free()  # Remove the coin after collection
+		print("Player detected")
+
+		# Access the player's add_money method directly
+		var player = body  # Assuming the player has a script with `add_money` method
+		if player.has_method("add_money"):
+			print("Adding money to player")
+			player.add_money(coin_value)  # Add the coin value to the player's money
+			player.money_label.text = "Money: " + str(player.money)  # Update the label
+
+		get_parent().queue_free()  # Remove the coin after collection

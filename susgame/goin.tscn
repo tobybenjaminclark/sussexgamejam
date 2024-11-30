@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://dit6qgy37gni1"]
+[gd_scene load_steps=7 format=3 uid="uid://dit6qgy37gni1"]
 
+[ext_resource type="Script" path="res://spingoin.gd" id="1_1y553"]
 [ext_resource type="Script" path="res://goin.gd" id="1_363ng"]
 [ext_resource type="Texture2D" uid="uid://ng0m0j74v68m" path="res://assets/goin.png" id="2_fjeu8"]
 [ext_resource type="ArrayMesh" uid="uid://cgwh06wf1rmw2" path="res://assets/goin.obj" id="3_opban"]
@@ -10,6 +11,7 @@ albedo_texture = ExtResource("2_fjeu8")
 [sub_resource type="SphereShape3D" id="SphereShape3D_2s4ll"]
 
 [node name="Goin" type="Node3D" groups=["Goin"]]
+script = ExtResource("1_1y553")
 
 [node name="Goin" type="MeshInstance3D" parent="." groups=["Goin"]]
 transform = Transform3D(-1.31134e-08, 0.3, 0, -0.3, -1.31134e-08, 0, 0, 0, 0.3, -0.132579, -0.00895953, -0.00332502)
