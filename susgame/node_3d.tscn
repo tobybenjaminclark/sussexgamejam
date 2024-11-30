@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://camera.gd" id="1_x12r0"]
 [ext_resource type="Script" path="res://player.gd" id="2_4r6hv"]
 [ext_resource type="Script" path="res://grinch.gd" id="2_c5pjk"]
-[ext_resource type="PackedScene" uid="uid://cgpikrs8btu85" path="res://santa3.glb" id="3_3xq82"]
-[ext_resource type="PackedScene" uid="uid://cl72j4moek6t5" path="res://grinch.glb" id="3_cx0hl"]
+[ext_resource type="PackedScene" uid="uid://cosfth6ws1f02" path="res://grinch2.glb" id="3_ra2t7"]
+[ext_resource type="PackedScene" uid="uid://c1qlcuxauoqpn" path="res://santa4.glb" id="5_yn6mn"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_kq87g"]
 
@@ -46,7 +46,7 @@ transform = Transform3D(0.993118, 0, 0, 0, 0.993118, 0, 0, 0, 0.993118, -0.00425
 
 [node name="Node" type="Node" parent="Grinch"]
 
-[node name="grinch" parent="Grinch" instance=ExtResource("3_cx0hl")]
+[node name="grinch2" parent="Grinch" instance=ExtResource("3_ra2t7")]
 transform = Transform3D(-30, 0, -2.62268e-06, 0, 30, 0, 2.62268e-06, 0, -30, -0.238049, -0.529781, 0)
 
 [node name="Santa" type="CharacterBody3D" parent="."]
@@ -63,7 +63,7 @@ shape = SubResource("CapsuleShape3D_tt8iy")
 [node name="OmniLight3D" type="OmniLight3D" parent="Santa"]
 transform = Transform3D(0.993118, 0, 0, 0, 0.993118, 0, 0, 0, 0.993118, -0.0042544, 0.552637, 0.00198454)
 
-[node name="santa3" parent="Santa" instance=ExtResource("3_3xq82")]
-transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 0.052246, -1.07049, 0.0932909)
-
 [node name="Node" type="Node" parent="Santa"]
+
+[node name="santa4" parent="Santa" instance=ExtResource("5_yn6mn")]
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 0, -1.10603, 0)

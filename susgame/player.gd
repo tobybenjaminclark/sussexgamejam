@@ -6,7 +6,7 @@ const JUMP_VELOCITY = 4.5
 var animation_player : AnimationPlayer  # Declare AnimationPlayer variable
 
 func _ready() -> void:
-	animation_player = $santa3/AnimationPlayer
+	animation_player = $santa4/AnimationPlayer
 	if animation_player == null:
 		print("AnimationPlayer not found!")
 	else:
@@ -40,13 +40,13 @@ func _physics_process(delta: float) -> void:
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
 		# Play the walking animation if moving
-		if not animation_player.is_playing() or animation_player.current_animation != "drunk_idle":
-			animation_player.play("drunk_idle")
+		if not animation_player.is_playing() or animation_player.current_animation != "walk":
+			animation_player.play("walk")
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 		# Play the idle animation if not moving
-		if not animation_player.is_playing() or animation_player.current_animation != "drunk_walk":
-			animation_player.play("drunk_walk")
+		if not animation_player.is_playing() or animation_player.current_animation != "idle":
+			animation_player.play("idle")
 
 	move_and_slide()

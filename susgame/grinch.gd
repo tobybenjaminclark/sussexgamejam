@@ -8,7 +8,7 @@ var animation_player : AnimationPlayer  # Declare AnimationPlayer variable
 var santa : Node3D  # Reference to the target `santa`
 
 func _ready() -> void:
-	animation_player = $grinch/AnimationPlayer
+	animation_player = $grinch2/AnimationPlayer
 	santa = get_parent().get_node("Santa")
 	if animation_player == null:
 		print("AnimationPlayer not found!")
