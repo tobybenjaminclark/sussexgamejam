@@ -82,7 +82,7 @@ material = SubResource("StandardMaterial3D_hllgy")
 
 [sub_resource type="AudioStream" id="AudioStream_y4qee"]
 
-[node name="Node3D" type="Node3D"]
+[node name="Node3D2" type="Node3D"]
 transform = Transform3D(1.00693, 0, 0, 0, 1.00693, 0, 0, 0, 1.00693, 0, 0, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://covtx5f455gnl"]
+[gd_scene load_steps=29 format=3 uid="uid://cs0owmxxmv5cf"]
 
 [ext_resource type="Script" path="res://camera.gd" id="1_oh3nm"]
 [ext_resource type="Script" path="res://playerr.gd" id="2_ee3qk"]
@@ -9,7 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://b48gm2ep2j0te" path="res://gun.mp3" id="8_5xdof"]
 [ext_resource type="Texture2D" uid="uid://c1tyrenn48s3e" path="res://assets/tower_head.png" id="9_lwv34"]
 [ext_resource type="ArrayMesh" uid="uid://bnrtj0eleuson" path="res://assets/tower_head.obj" id="10_ane01"]
-[ext_resource type="PackedScene" uid="uid://dit6qgy37gni1" path="res://goin.tscn" id="11_e57up"]
+[ext_resource type="PackedScene" uid="uid://b332hdlkphkcv" path="res://goin.tscn" id="11_e57up"]
 [ext_resource type="Texture2D" uid="uid://bawjdyf22dryf" path="res://muzzleflash.png" id="11_tv0km"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_kq87g"]
@@ -83,7 +83,7 @@ material = SubResource("StandardMaterial3D_yi3mo")
 
 [sub_resource type="AudioStream" id="AudioStream_63mfw"]
 
-[node name="Node3D" type="Node3D"]
+[node name="Node3D2" type="Node3D"]
 transform = Transform3D(1.00693, 0, 0, 0, 1.00693, 0, 0, 0, 1.00693, 1, 0, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
