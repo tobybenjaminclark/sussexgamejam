@@ -8,10 +8,6 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tt8iy"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_7khfc"]
-radius = 0.1
-height = 0.4
-
 [node name="Node3D" type="Node3D"]
 transform = Transform3D(1.00693, 0, 0, 0, 1.00693, 0, 0, 0, 1.00693, 0, 0, 0)
 
@@ -26,21 +22,24 @@ mesh = SubResource("PlaneMesh_kq87g")
 [node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
 transform = Transform3D(0.993113, 0, 0, 0, 0.993113, 0, 0, 0, 0.993113, 0, 0.308953, 0.307294)
 script = ExtResource("1_x12r0")
-target = NodePath("../CharacterBody3D")
+target = NodePath("../Player")
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0617735, 0)
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.993118, 0, 0, 0, -0.0348672, 0.992505, 0, -0.992505, -0.0348672, 0, 2.04471, 0)
+
+[node name="Player" type="CharacterBody3D" parent="."]
+transform = Transform3D(0.999999, 0, 0, 0, 0.999999, 0, 0, 0, 0.999999, -0.0832849, 1.12209, -0.285727)
 motion_mode = 1
 script = ExtResource("2_4r6hv")
 
-[node name="RigidBody3D" type="RigidBody3D" parent="CharacterBody3D"]
+[node name="RigidBody3D" type="RigidBody3D" parent="Player"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.106148, 0)
 shape = SubResource("CapsuleShape3D_tt8iy")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="CharacterBody3D"]
-transform = Transform3D(0.993113, 0, 0, 0, 0.993113, 0, 0, 0, 0.993113, -0.0042544, 0.552637, 0.00198454)
+[node name="OmniLight3D" type="OmniLight3D" parent="Player"]
+transform = Transform3D(0.993118, 0, 0, 0, 0.993118, 0, 0, 0, 0.993118, -0.0042544, 0.552637, 0.00198454)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.170331, 0)
@@ -48,3 +47,7 @@ mesh = SubResource("CapsuleMesh_7khfc")
 
 [node name="Node" type="Node" parent="CharacterBody3D"]
 script = ExtResource("3_vvhch")
+
+[node name="santa3" parent="Player" instance=ExtResource("3_3xq82")]
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 0.052246, -1.07049, 0.0932909)
+
