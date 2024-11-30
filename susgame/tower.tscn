@@ -1,15 +1,16 @@
-[gd_scene load_steps=28 format=3 uid="uid://btks3vl2yjdva"]
+[gd_scene load_steps=29 format=3 uid="uid://xoa6xtmo31xf"]
 
 [ext_resource type="Script" path="res://camera.gd" id="1_nmnx0"]
 [ext_resource type="Script" path="res://player.gd" id="2_fwmk0"]
 [ext_resource type="Texture2D" uid="uid://dbp8qnywugwvu" path="res://assets/tower_base.png" id="3_u3ksm"]
 [ext_resource type="Script" path="res://tower.gd" id="3_ur7kr"]
-[ext_resource type="PackedScene" uid="uid://04ygyl54w7je" path="res://tower_bullet.tscn" id="4_aa0th"]
+[ext_resource type="PackedScene" path="res://tower_bullet.tscn" id="4_aa0th"]
 [ext_resource type="ArrayMesh" uid="uid://curqt0vakt7dl" path="res://assets/tower_base.obj" id="4_ky75q"]
 [ext_resource type="Texture2D" uid="uid://c1tyrenn48s3e" path="res://assets/tower_head.png" id="5_gx2n8"]
 [ext_resource type="ArrayMesh" uid="uid://bnrtj0eleuson" path="res://assets/tower_head.obj" id="6_3lkkv"]
 [ext_resource type="AudioStream" uid="uid://b48gm2ep2j0te" path="res://gun.mp3" id="7_7tqhs"]
 [ext_resource type="Texture2D" uid="uid://bawjdyf22dryf" path="res://muzzleflash.png" id="9_638de"]
+[ext_resource type="PackedScene" uid="uid://dmvijntopcso0" path="res://stellaPickup.tscn" id="11_jf0c0"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_kq87g"]
 
@@ -154,3 +155,6 @@ draw_pass_1 = SubResource("QuadMesh_dabqd")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="TowerBase/Node3D"]
 stream = SubResource("AudioStream_y4qee")
+
+[node name="StellaPickup" parent="." instance=ExtResource("11_jf0c0")]
+transform = Transform3D(0.993118, 0, 0, 0, 0.993118, 0, 0, 0, 0.993118, 3.82034, 0, -1.09993)
