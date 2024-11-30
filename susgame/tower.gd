@@ -14,7 +14,7 @@ var time_since_last_shot : float = 0.0
 
 
 func _ready():
-	player = get_node_or_null("../Player")
+	player = get_node_or_null("/root/Node3D/Player")
 
 
 
@@ -32,12 +32,23 @@ func _process(delta):
 
 
 
+# Called when the shoot button is pressed
 func shoot_bullet():
 	var bullet = bullet_scene.instantiate()
-	bullet.global_transform.origin = global_transform.origin + Vector3.UP * 2  # Adjust starting position
-	bullet.look_at(player.global_transform.origin, Vector3.UP)  # Make bullet face the player
 
-	# Calculate direction towards player
+	# Create a Node3D at the end of the barrel (or use an existing one)
+	var muzzle_node = get_node_or_null("MuzzleNode")
+
+	# Optionally, add the muzzle node to the scene for debugging or visual purposes
+	get_tree().current_scene.add_child(muzzle_node)
+
+	# Position the bullet at the muzzle position
+	bullet.global_transform.origin = muzzle_node.global_transform.origin
+
+	# Make bullet face the player
+	bullet.look_at(player.global_transform.origin, Vector3.UP)
+
+	# Calculate direction towards the player
 	var direction = (player.global_transform.origin - bullet.global_transform.origin).normalized()
 
 	# Set the velocity of the bullet (direction * speed)
@@ -47,4 +58,5 @@ func shoot_bullet():
 	if bullet is RigidBody3D:
 		bullet.linear_velocity = velocity
 
+	# Add the bullet to the scene
 	get_tree().current_scene.add_child(bullet)
