@@ -1,0 +1,90 @@
+[gd_scene load_steps=11 format=3 uid="uid://ba8djyq345hy"]
+
+[ext_resource type="Script" path="res://camera.gd" id="1_bk73r"]
+[ext_resource type="PackedScene" uid="uid://cwh1wpls5gq4m" path="res://GrinchEnemy.tscn" id="2_ckvm4"]
+[ext_resource type="Script" path="res://player.gd" id="4_y20rh"]
+[ext_resource type="PackedScene" uid="uid://c1qlcuxauoqpn" path="res://santa4.glb" id="5_rcowu"]
+[ext_resource type="Script" path="res://grinch_spawner.gd" id="6_v8d0k"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tt8iy"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_0jtq3"]
+vertices = PackedVector3Array(-0.0210743, 0.484013, 11.0148, -0.0210743, 0.484013, 5.51477, -1.77107, 0.484013, 5.51477, -2.77107, 0.484013, 4.76477, -20.0211, 0.484013, 11.0148, -1.77107, 0.484013, 0.264771, -0.0210743, 0.484013, 0.264771, -0.0210743, 0.484013, -10.9852, -3.02107, 0.484013, 1.51477, -20.0211, 0.484013, -10.9852, 1.72893, 0.484013, 5.51477, 2.72893, 0.484013, 4.76477, 19.9789, 0.484013, 11.0148, 1.72893, 0.484013, 0.264771, 2.97893, 0.484013, 1.51477, 19.9789, 0.484013, -10.9852)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(2, 0, 3), PackedInt32Array(3, 0, 4), PackedInt32Array(7, 6, 5), PackedInt32Array(5, 8, 7), PackedInt32Array(7, 8, 9), PackedInt32Array(9, 8, 4), PackedInt32Array(8, 3, 4), PackedInt32Array(0, 1, 10), PackedInt32Array(10, 11, 0), PackedInt32Array(0, 11, 12), PackedInt32Array(13, 6, 7), PackedInt32Array(13, 7, 14), PackedInt32Array(14, 7, 15), PackedInt32Array(14, 15, 12), PackedInt32Array(12, 11, 14)]
+agent_height = 2.0
+agent_radius = 1.5
+agent_max_climb = 0.2
+agent_max_slope = 11.63
+
+[sub_resource type="BoxMesh" id="BoxMesh_rj4lc"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4oend"]
+
+[sub_resource type="TorusMesh" id="TorusMesh_gpi78"]
+
+[node name="Node3D2" type="Node3D"]
+transform = Transform3D(1.00693, 0, 0, 0, 1.00693, 0, 0, 0, 1.00693, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
+transform = Transform3D(0.993113, 0, 0, 0, 0.993113, 0, 0, 0, 0.993113, 0, 0.308953, 0.307294)
+script = ExtResource("1_bk73r")
+target = NodePath("../Santa")
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.0351089, 0.999384, 0, -0.999384, -0.0351089, 0, 3.60055, 0)
+
+[node name="Grinch" parent="." instance=ExtResource("2_ckvm4")]
+
+[node name="Santa" type="CharacterBody3D" parent="."]
+transform = Transform3D(0.999999, 0, 0, 0, 0.999999, 0, 0, 0, 0.999999, -0.0832849, 1.12209, -0.285727)
+motion_mode = 1
+script = ExtResource("4_y20rh")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="Santa"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Santa"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.106148, 0)
+shape = SubResource("CapsuleShape3D_tt8iy")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Santa"]
+transform = Transform3D(0.993118, 0, 0, 0, 0.993118, 0, 0, 0, 0.993118, -0.0042544, 0.552637, 0.00198454)
+
+[node name="Node" type="Node" parent="Santa"]
+
+[node name="santa4" parent="Santa" instance=ExtResource("5_rcowu")]
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 0, -1.10603, 0)
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_0jtq3")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D"]
+transform = Transform3D(43.0422, 0, 0, 0, 0.250963, 0, 0, 0, 24.9705, 0, -0.140506, 0)
+mesh = SubResource("BoxMesh_rj4lc")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/MeshInstance3D/StaticBody3D"]
+shape = SubResource("BoxShape3D_4oend")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="NavigationRegion3D"]
+transform = Transform3D(2.952, 0, 0, 0, 1.73098, 0, 0, 0, -2.16133, 0, 0.797473, 2.89388)
+mesh = SubResource("BoxMesh_rj4lc")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/MeshInstance3D2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/MeshInstance3D2/StaticBody3D"]
+shape = SubResource("BoxShape3D_4oend")
+
+[node name="GrinchSpawner" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.16049, 9.47111e-07, -7.63547)
+script = ExtResource("6_v8d0k")
+character_scene = ExtResource("2_ckvm4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="GrinchSpawner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.60293, 0)
+mesh = SubResource("TorusMesh_gpi78")
+
+[node name="Timer" type="Timer" parent="GrinchSpawner"]
+wait_time = 10.0
+
+[connection signal="timeout" from="GrinchSpawner/Timer" to="GrinchSpawner" method="_on_timer_timeout"]

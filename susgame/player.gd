@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-const SPEED = 1
+const SPEED = 2
 const JUMP_VELOCITY = 4.5
 
 var animation_player : AnimationPlayer  # Declare AnimationPlayer variable
