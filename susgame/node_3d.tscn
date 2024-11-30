@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://c8mq1tc5gxv7c"]
+[gd_scene load_steps=7 format=3 uid="uid://c8mq1tc5gxv7c"]
 
 [ext_resource type="Script" path="res://camera.gd" id="1_x12r0"]
 [ext_resource type="Script" path="res://player.gd" id="2_4r6hv"]
+[ext_resource type="Script" path="res://code/integration/PlayerClickHandler.cs" id="3_vvhch"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_kq87g"]
 
@@ -44,3 +45,6 @@ transform = Transform3D(0.993113, 0, 0, 0, 0.993113, 0, 0, 0, 0.993113, -0.00425
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.170331, 0)
 mesh = SubResource("CapsuleMesh_7khfc")
+
+[node name="Node" type="Node" parent="CharacterBody3D"]
+script = ExtResource("3_vvhch")
