@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://brc00gwl0mdeo"
+path="res://.godot/imported/elf_arm.obj-e061e819387e21e14fe97fa4866ee3dd.mesh"
+
+[deps]
+
+files=["res://.godot/imported/elf_arm.obj-e061e819387e21e14fe97fa4866ee3dd.mesh"]
+
+source_file="res://elf_arm.obj"
+dest_files=["res://.godot/imported/elf_arm.obj-e061e819387e21e14fe97fa4866ee3dd.mesh", "res://.godot/imported/elf_arm.obj-e061e819387e21e14fe97fa4866ee3dd.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false
