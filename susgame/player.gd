@@ -6,8 +6,11 @@ const JUMP_VELOCITY = 4.5
 var animation_player : AnimationPlayer  # Declare AnimationPlayer variable
 
 func _ready() -> void:
-	# Get the AnimationPlayer node (make sure it's named "AnimationPlayer" in the scene)
 	animation_player = $santa3/AnimationPlayer
+	if animation_player == null:
+		print("AnimationPlayer not found!")
+	else:
+		print("AnimationPlayer initialized successfully")
 
 func _physics_process(delta: float) -> void:
 	# Handle jump.
