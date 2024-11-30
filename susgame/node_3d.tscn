@@ -33,7 +33,6 @@ motion_mode = 1
 script = ExtResource("2_4r6hv")
 
 [node name="RigidBody3D" type="RigidBody3D" parent="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.106148, 0)
