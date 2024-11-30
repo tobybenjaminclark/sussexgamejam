@@ -1,8 +1,26 @@
 extends CharacterBody3D
 
-const SPEED = 5.0
-const JUMP_VELOCITY = 4.5
+const SPEED: float = 5.0
+const JUMP_VELOCITY: float = 4.5
 
+var money: int = 0
+
+@export var money_label: Label  # Allows setting the Label path in the Inspector
+
+func _ready() -> void:
+	update_money_label()
+
+func add_money(amount: int) -> void:
+	money += amount
+	update_money_label()
+
+func remove_money(amount: int) -> void:
+	money = max(0, money - amount)
+	update_money_label()
+
+func update_money_label() -> void:
+	money_label.text = "Money: %d" % money
+	
 func _physics_process(delta: float) -> void:
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
@@ -17,9 +35,6 @@ func _physics_process(delta: float) -> void:
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
 	else:
-		# Decelerate to zero when no input is given.
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
-
-	# Move the character, applying gravity automatically
-	move_and_slide()  # Use Vector3.UP to ensure the movement is in world space
+	move_and_slide()
