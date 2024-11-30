@@ -1,0 +1,66 @@
+[gd_scene load_steps=10 format=3 uid="uid://btks3vl2yjdva"]
+
+[ext_resource type="Script" path="res://camera.gd" id="1_nmnx0"]
+[ext_resource type="Script" path="res://player.gd" id="2_fwmk0"]
+[ext_resource type="Script" path="res://tower.gd" id="3_ur7kr"]
+[ext_resource type="PackedScene" uid="uid://04ygyl54w7je" path="res://tower_bullet.tscn" id="4_aa0th"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_kq87g"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tt8iy"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_7khfc"]
+radius = 0.1
+height = 0.4
+
+[sub_resource type="BoxMesh" id="BoxMesh_x33w6"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_7v146"]
+
+[node name="Node3D" type="Node3D"]
+transform = Transform3D(1.00693, 0, 0, 0, 1.00693, 0, 0, 0, 1.00693, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(13.0225, 0, 0, 0, 1.03254, 0, 0, 0, 4.97696, 0, 0, 0)
+mesh = SubResource("PlaneMesh_kq87g")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D"]
+
+[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
+transform = Transform3D(0.993113, 0, 0, 0, 0.993113, 0, 0, 0, 0.993113, 0, 0.308953, 0.307294)
+script = ExtResource("1_nmnx0")
+target = NodePath("../Player")
+
+[node name="Player" type="CharacterBody3D" parent="."]
+transform = Transform3D(1.00219, 0, 0, 0, 1.00219, 0, 0, 0, 1.00219, 0, 0.0617735, 0)
+motion_mode = 1
+script = ExtResource("2_fwmk0")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="Player"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+transform = Transform3D(0.174111, 0, 0, 0, 0.115569, 0, 0, 0, 0.177485, 0.0016621, 0.142168, -0.00171467)
+shape = SubResource("CapsuleShape3D_tt8iy")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Player"]
+transform = Transform3D(0.993113, 0, 0, 0, 0.993113, 0, 0, 0, 0.993113, -0.0042544, 0.552637, 0.00198454)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.170331, 0)
+mesh = SubResource("CapsuleMesh_7khfc")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.993118, 0, 0, 0, 0.507059, 0.853917, 0, -0.853917, 0.507059, -4.7448e-07, 3.35886, 4.62456e-10)
+
+[node name="Tower" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.13372, -0.00763912, 0.00602374, 0.0198802, 0.438085, -0.00526318, -0.0117851, 0.0041215, 0.570602, -5.87354, 1.2803, 0)
+mesh = SubResource("BoxMesh_x33w6")
+script = ExtResource("3_ur7kr")
+detection_range = 1e+10
+bullet_scene = ExtResource("4_aa0th")
+
+[node name="TowerNode" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.297285, 0, 0, 0, 2.27621, 0, 0, 0, 0.230324, -5.90244, 0, 0)
+mesh = SubResource("BoxMesh_7v146")
