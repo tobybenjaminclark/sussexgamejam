@@ -1,11 +1,27 @@
-[gd_scene load_steps=8 format=3 uid="uid://b73ul3gxckxcf"]
+[gd_scene load_steps=9 format=3 uid="uid://b73ul3gxckxcf"]
 
 [ext_resource type="Texture2D" uid="uid://dbjq1p6jpkrpq" path="res://elf_arm.png" id="1_n8k4l"]
 [ext_resource type="ArrayMesh" uid="uid://brc00gwl0mdeo" path="res://elf_arm.obj" id="2_2jehu"]
 [ext_resource type="ArrayMesh" uid="uid://bp7ehvpqkp8wf" path="res://elf_without_arm.obj" id="3_5jb5v"]
+[ext_resource type="ArrayMesh" uid="uid://caij4ueydid64" path="res://hammer.obj" id="3_hldmy"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i7odm"]
 albedo_texture = ExtResource("1_n8k4l")
+
+[sub_resource type="Animation" id="Animation_cvbmr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ElfArm:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.5708, 0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_xcti0"]
 resource_name = "elf_mining"
@@ -29,21 +45,6 @@ tracks/1/keys = {
 "values": [Vector3(-1.5708, 0, 0), Vector3(-0.785398, 0, 0), Vector3(-1.5708, 0, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_cvbmr"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ElfArm:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-1.5708, 0, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yss00"]
 _data = {
 "RESET": SubResource("Animation_cvbmr"),
@@ -53,9 +54,14 @@ _data = {
 [node name="Node3D" type="Node3D"]
 
 [node name="ElfArm" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.988437, 1.4528, 1.70862)
+transform = Transform3D(1, 0, 0, 0, -3.61999e-06, 1, 0, -1, -3.61999e-06, 0.988437, 1.4528, 1.70862)
 material_override = SubResource("StandardMaterial3D_i7odm")
 mesh = ExtResource("2_2jehu")
+
+[node name="Hammer" type="MeshInstance3D" parent="ElfArm"]
+transform = Transform3D(1, 0, 0, 0, 0.726704, -0.686951, 0, 0.686951, 0.726704, 0, 0.777119, 0.0306265)
+mesh = ExtResource("3_hldmy")
+skeleton = NodePath("../..")
 
 [node name="ElfWithoutArm" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.49025, 0, 1.6233)
