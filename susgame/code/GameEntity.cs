@@ -44,7 +44,7 @@ namespace susgame.code
             set {
                 _x = value;
                 // Clamp the location to keep it on the map
-                _x = Math.Clamp(value, 0, Location.Map.Width - float.Epsilon);
+                _x = Math.Clamp(value, 0, Location.Map.Width - 0.001f);
                 // Moved to a new location
                 if (_x >= Location.X + 1 || _x < Location.X || _y >= Location.Y + 1 || _y < Location.Y)
                 {
@@ -64,7 +64,7 @@ namespace susgame.code
             {
                 _y = value;
                 // Clamp the location to keep it on the map
-                _y = Math.Clamp(value, 0, Location.Map.Height - float.Epsilon);
+                _y = Math.Clamp(value, 0, Location.Map.Height - 0.001f);
                 // Moved to a new location
                 if (_x >= Location.X + 1 || _x < Location.X || _y >= Location.Y + 1 || _y < Location.Y)
                 {
@@ -74,13 +74,35 @@ namespace susgame.code
             }
         }
 
-        protected GameEntity(float x, float y)
+        protected abstract string _Model { get; }
+
+        public virtual string Model
         {
+            get => _meshEntity.Mesh.ResourceName;
+            set
+            {
+                _meshEntity.Mesh = GD.Load<Mesh>($"res://{value}.obj");
+            }
+        }
+
+        protected GameEntity(Map map, float x, float y)
+        {
+            x = Math.Clamp(x, 0, map.Width - float.Epsilon);
+            y = Math.Clamp(y, 0, map.Height - float.Epsilon);
+            Location = map.TileList[(int)_x, (int)_y];
             // Create the GD game entity
             _gdEntity = new GDGameEntity();
-            (Engine.GetMainLoop() as SceneTree)?.CurrentScene.AddChild(_gdEntity);
+            _gdEntity.gameEntity = this;
             _meshEntity = new();
-            _gdEntity.AddChild(_meshEntity);
+            Action value = null;
+            value = () =>
+            {
+                (Engine.GetMainLoop() as SceneTree)?.CurrentScene.AddChild(_gdEntity);
+                (Engine.GetMainLoop() as SceneTree).ProcessFrame -= value;
+                _gdEntity.AddChild(_meshEntity);
+                Model = _Model;
+            };
+            (Engine.GetMainLoop() as SceneTree).ProcessFrame += value;
             X = x;
             Y = y;
         }
@@ -89,7 +111,7 @@ namespace susgame.code
         /// Perform a single tick
         /// </summary>
         /// <param name="deltaTime"></param>
-        public virtual void Tick(TimeSpan deltaTime)
+        public virtual void Tick(double deltaTime)
         {
 
         }

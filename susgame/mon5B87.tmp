@@ -1,0 +1,59 @@
+[gd_scene load_steps=7 format=3 uid="uid://covtx5f455gnl"]
+
+[ext_resource type="Script" path="res://camera.gd" id="1_oh3nm"]
+[ext_resource type="Script" path="res://playerr.gd" id="2_ee3qk"]
+[ext_resource type="PackedScene" uid="uid://dit6qgy37gni1" path="res://goin.tscn" id="11_e57up"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_kq87g"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_7khfc"]
+radius = 0.1
+height = 0.4
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tt8iy"]
+
+[node name="Node3D" type="Node3D"]
+transform = Transform3D(1.00693, 0, 0, 0, 1.00693, 0, 0, 0, 1.00693, 1, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(13.0225, 0, 0, 0, 1.03254, 0, 0, 0, 4.97696, 0, 0, 0)
+mesh = SubResource("PlaneMesh_kq87g")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D"]
+
+[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
+transform = Transform3D(0.993113, 0, 0, 0, 0.993113, 0, 0, 0, 0.993113, 0, 0.308953, 0.307294)
+script = ExtResource("1_oh3nm")
+target = NodePath("../Player")
+
+[node name="Player" type="CharacterBody3D" parent="." node_paths=PackedStringArray("money_label")]
+transform = Transform3D(1.00165, 0, 0, 0, 1.00165, 0, 0, 0, 1.00165, -0.0179383, 0.061774, 0.0112754)
+motion_mode = 1
+script = ExtResource("2_ee3qk")
+money_label = NodePath("../CanvasLayer/Label")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.170331, 0)
+mesh = SubResource("CapsuleMesh_7khfc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.106148, 0)
+shape = SubResource("CapsuleShape3D_tt8iy")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Player"]
+
+[node name="Goin" parent="." instance=ExtResource("11_e57up")]
+transform = Transform3D(0.993118, 0, 0, 0, 0.993118, 0, 0, 0, 0.993118, 3.32206, 0.283758, 0.0154199)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(0.993118, 0, 0, 0, -0.887791, -0.445096, 0, 0.445096, -0.887791, 0, 4.07893, 0)
+light_energy = 5.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Money: 0"
