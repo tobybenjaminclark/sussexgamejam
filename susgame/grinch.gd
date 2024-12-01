@@ -3,6 +3,8 @@ extends CharacterBody3D
 const SPEED = 0.5
 const FOLLOW_DISTANCE = 1.0 
 
+@export var coin_scene: PackedScene  # Reference to the "coin" prefab
+
 var animation_player: AnimationPlayer
 var santa: Node3D
 var is_dead: bool = false
@@ -77,6 +79,15 @@ func _on_body_entered(body: Node3D) -> void:
 			animation_player.play("grinch_die")
 			print("Grinch hit by a bullet!")
 			
-			# Wait for death animation to finish before freeing the node
+			# Wait for death animation to finish before spawning a coin and freeing the Grinch
 			await get_tree().create_timer(animation_player.current_animation_length).timeout
+			spawn_coin()
 			queue_free()
+
+func spawn_coin():
+	if coin_scene:
+		var coin = coin_scene.instantiate()
+		coin.global_transform.origin = global_transform.origin  # Spawn at Grinch's position
+		get_tree().current_scene.add_child(coin)
+	else:
+		print("Coin scene is not assigned!")

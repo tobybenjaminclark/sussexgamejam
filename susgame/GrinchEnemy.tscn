@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://drs0krep1xfd0"]
+[gd_scene load_steps=6 format=3 uid="uid://drs0krep1xfd0"]
 
 [ext_resource type="Script" path="res://grinch.gd" id="1_34apq"]
 [ext_resource type="PackedScene" uid="uid://cosfth6ws1f02" path="res://grinch2.glb" id="2_ihtp6"]
+[ext_resource type="PackedScene" uid="uid://b332hdlkphkcv" path="res://goin.tscn" id="2_u58s4"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tt8iy"]
 
@@ -11,6 +12,7 @@
 transform = Transform3D(0.999997, 0, 0, 0, 0.999997, 0, 0, 0, 0.999997, 0.15934, 0.5772, 0.0145868)
 motion_mode = 1
 script = ExtResource("1_34apq")
+coin_scene = ExtResource("2_u58s4")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.106148, 6.51926e-09)
