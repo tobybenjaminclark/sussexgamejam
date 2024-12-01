@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://main.gd" id="1_miun0"]
 [ext_resource type="Script" path="res://camera.gd" id="2_wrwv6"]
-[ext_resource type="PackedScene" uid="uid://drs0krep1xfd0" path="res://GrinchEnemy.tscn" id="3_232w8"]
+[ext_resource type="PackedScene" uid="uid://cwh1wpls5gq4m" path="res://GrinchEnemy.tscn" id="3_232w8"]
 [ext_resource type="Script" path="res://player.gd" id="4_4osx2"]
 [ext_resource type="PackedScene" uid="uid://c1qlcuxauoqpn" path="res://santa4.glb" id="5_k0roi"]
 [ext_resource type="ArrayMesh" uid="uid://c5ky0qrohm8ry" path="res://tree_1.obj" id="6_7u3ys"]
@@ -110,7 +110,7 @@ material = SubResource("StandardMaterial3D_yi3mo")
 
 [sub_resource type="AudioStream" id="AudioStream_odu6n"]
 
-[node name="Node3D2" type="Node3D"]
+[node name="Node3D3" type="Node3D"]
 transform = Transform3D(1.00693, 0, 0, 0, 1.00693, 0, 0, 0, 1.00693, 0, 0, 0)
 script = ExtResource("1_miun0")
 
@@ -120,10 +120,12 @@ script = ExtResource("2_wrwv6")
 target = NodePath("../Santa")
 
 [node name="Sun" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -0.0351089, 0.999384, 0, -0.999384, -0.0351089, 0, 3.60055, 0)
+transform = Transform3D(0.993118, 0, 0, 0, 0.906431, 0.405789, 0, -0.405789, 0.906431, 0, 3.60055, 0)
+shadow_enabled = true
 
-[node name="Grinch" parent="." groups=["Enemy"] instance=ExtResource("3_232w8")]
+[node name="Grinch" parent="." instance=ExtResource("3_232w8")]
 transform = Transform3D(0.999997, 0, 0, 0, 0.999997, 0, 0, 0, 0.999997, 6.51343, 0.5772, 0.0145868)
+coin_scene = null
 
 [node name="Santa" type="CharacterBody3D" parent="."]
 transform = Transform3D(0.999999, 0, 0, 0, 0.999999, 0, 0, 0, 0.999999, -0.0832849, 1.12209, -0.285727)
@@ -148,7 +150,7 @@ shape = SubResource("CapsuleShape3D_tt8iy")
 navigation_mesh = SubResource("NavigationMesh_0jtq3")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D"]
-transform = Transform3D(43.0422, 0, 0, 0, 0.250963, 0, 0, 0, 24.9705, 0.023361, -0.164877, -0.0162342)
+transform = Transform3D(344.231, 0, 0, 0, 0.250963, 0, 0, 0, 529.903, 0.023361, -0.164877, -0.0162342)
 mesh = SubResource("BoxMesh_rj4lc")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/MeshInstance3D"]

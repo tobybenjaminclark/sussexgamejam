@@ -120,7 +120,9 @@ script = ExtResource("2_1lgff")
 target = NodePath("../Santa")
 
 [node name="Sun" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -0.0351089, 0.999384, 0, -0.999384, -0.0351089, 0, 3.60055, 0)
+transform = Transform3D(0.993118, 0, 0, 0, 0.862722, 0.491928, 0, -0.491928, 0.862722, 0, 3.60055, 0)
+light_volumetric_fog_energy = 7.115
+shadow_enabled = true
 
 [node name="Grinch" parent="." instance=ExtResource("3_146x3")]
 transform = Transform3D(0.999997, 0, 0, 0, 0.999997, 0, 0, 0, 0.999997, 6.51343, 0.5772, 0.0145868)
@@ -135,9 +137,6 @@ script = ExtResource("4_7t2k6")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Santa"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.106148, 0)
 shape = SubResource("CapsuleShape3D_tt8iy")
-
-[node name="OmniLight3D" type="OmniLight3D" parent="Santa"]
-transform = Transform3D(0.993118, 0, 0, 0, 0.993118, 0, 0, 0, 0.993118, -0.0042544, 0.552637, 0.00198454)
 
 [node name="Node" type="Node" parent="Santa"]
 
@@ -636,7 +635,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.113366, 1.35306, 0.0049591
 shape = SubResource("BoxShape3D_hbo2x")
 
 [node name="GrinchSpawner" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.16049, 9.47111e-07, -7.63547)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.15544, 1.18389e-06, -7.63823)
 script = ExtResource("10_fvhyq")
 character_scene = ExtResource("3_146x3")
 
@@ -654,7 +653,6 @@ mesh = ExtResource("13_y14dl")
 [node name="Node3D" type="Node3D" parent="TowerBase"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.87153, 0)
 script = ExtResource("14_jw11g")
-detection_range = 999.0
 bullet_scene = ExtResource("15_mawvf")
 gun_sound = ExtResource("16_424mr")
 
