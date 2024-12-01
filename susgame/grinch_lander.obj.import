@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cr36b8x5wfrvx"
+path="res://.godot/imported/grinch_lander.obj-f46ba34d938db2cd36e988457fbcd0fe.mesh"
+
+[deps]
+
+files=["res://.godot/imported/grinch_lander.obj-f46ba34d938db2cd36e988457fbcd0fe.mesh"]
+
+source_file="res://grinch_lander.obj"
+dest_files=["res://.godot/imported/grinch_lander.obj-f46ba34d938db2cd36e988457fbcd0fe.mesh", "res://.godot/imported/grinch_lander.obj-f46ba34d938db2cd36e988457fbcd0fe.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false
