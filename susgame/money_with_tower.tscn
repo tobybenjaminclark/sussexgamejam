@@ -1,4 +1,3 @@
-
 [gd_scene load_steps=29 format=3 uid="uid://cs0owmxxmv5cf"]
 
 [ext_resource type="Script" path="res://camera.gd" id="1_oh3nm"]
@@ -21,7 +20,6 @@ height = 0.4
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tt8iy"]
 
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2kiwr"]
 albedo_texture = ExtResource("4_5wh53")
 
@@ -29,77 +27,64 @@ albedo_texture = ExtResource("4_5wh53")
 albedo_texture = ExtResource("9_lwv34")
 
 [sub_resource type="Curve" id="Curve_4yvyf"]
-
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.707469, 0.833743), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_bkd2d"]
-
+[sub_resource type="CurveTexture" id="CurveTexture_tg50d"]
 curve = SubResource("Curve_4yvyf")
 
 [sub_resource type="Gradient" id="Gradient_2gn1r"]
-
 offsets = PackedFloat32Array(0.00452489, 0.549774, 1)
 colors = PackedColorArray(1, 0.0705882, 0, 1, 1, 0.54902, 0, 1, 1, 1, 1, 0)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_um84t"]
-
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_axiwu"]
 gradient = SubResource("Gradient_2gn1r")
 
 [sub_resource type="Curve" id="Curve_e42ko"]
-
 max_value = 25.0
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.46888, 2.05976), 0.0, 0.0, 0, 0, Vector2(0.840249, 6.93556), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_5pb7t"]
-
+[sub_resource type="CurveTexture" id="CurveTexture_dtyj4"]
 curve = SubResource("Curve_e42ko")
 
 [sub_resource type="Curve" id="Curve_hbqwi"]
-
 _data = [Vector2(0, 0.376537), 0.0, 0.0, 0, 0, Vector2(0.224066, 0.971225), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_3v767"]
-
+[sub_resource type="CurveTexture" id="CurveTexture_2tdq8"]
 curve = SubResource("Curve_hbqwi")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rfr8v"]
-
 angle_min = -720.0
 angle_max = 720.0
 gravity = Vector3(0, 0, 0)
 scale_min = 2.0
 scale_max = 4.0
-scale_curve = SubResource("CurveTexture_3v767")
+scale_curve = SubResource("CurveTexture_2tdq8")
 color = Color(1, 0.427451, 0, 1)
-color_ramp = SubResource("GradientTexture1D_um84t")
-alpha_curve = SubResource("CurveTexture_bkd2d")
-emission_curve = SubResource("CurveTexture_5pb7t")
+color_ramp = SubResource("GradientTexture1D_axiwu")
+alpha_curve = SubResource("CurveTexture_tg50d")
+emission_curve = SubResource("CurveTexture_dtyj4")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yi3mo"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_enb2a"]
 transparency = 1
 vertex_color_use_as_albedo = true
 albedo_color = Color(1, 1, 0, 1)
-
 albedo_texture = ExtResource("11_tv0km")
-
 billboard_mode = 3
 billboard_keep_scale = true
 particles_anim_h_frames = 1
 particles_anim_v_frames = 1
 particles_anim_loop = false
 
-
 [sub_resource type="QuadMesh" id="QuadMesh_8loc4"]
-material = SubResource("StandardMaterial3D_yi3mo")
+material = SubResource("StandardMaterial3D_enb2a")
 
 [sub_resource type="AudioStream" id="AudioStream_63mfw"]
 
-[node name="Node3D2" type="Node3D"]
+[node name="Node3D3" type="Node3D"]
 transform = Transform3D(1.00693, 0, 0, 0, 1.00693, 0, 0, 0, 1.00693, 1, 0, 0)
-
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(13.0225, 0, 0, 0, 1.03254, 0, 0, 0, 4.97696, 0, 0, 0)
@@ -127,7 +112,6 @@ mesh = SubResource("CapsuleMesh_7khfc")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.106148, 0)
 shape = SubResource("CapsuleShape3D_tt8iy")
-
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Player"]
 
@@ -157,7 +141,6 @@ gun_sound = ExtResource("8_5xdof")
 transform = Transform3D(-1, 0.000131563, -0.000587184, 0.000133063, 0.999997, -0.00256581, 0.000586846, -0.00256589, -0.999997, 0.026062, -0.461343, -1.62176)
 material_override = SubResource("StandardMaterial3D_1bbfh")
 mesh = ExtResource("10_ane01")
-
 skeleton = NodePath("../../..")
 
 [node name="MuzzleNode" type="Node3D" parent="TowerBase/Node3D"]
@@ -172,7 +155,6 @@ one_shot = true
 explosiveness = 0.1
 randomness = 1.0
 local_coords = true
-
 process_material = SubResource("ParticleProcessMaterial_rfr8v")
 draw_pass_1 = SubResource("QuadMesh_8loc4")
 
@@ -184,4 +166,3 @@ transform = Transform3D(0.993118, 0, 0, 0, 0.292265, 0.949138, 0, -0.949138, 0.2
 
 [node name="Goin2" parent="." instance=ExtResource("11_e57up")]
 transform = Transform3D(0.986283, 0, 0, 0, 0.986283, 0, 0, 0, 0.986283, 6.62126, 0.565563, 0.0307337)
-

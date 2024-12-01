@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://camera.gd" id="1_bk73r"]
 [ext_resource type="Script" path="res://main.gd" id="1_n44o6"]
-[ext_resource type="PackedScene" uid="uid://cwh1wpls5gq4m" path="res://GrinchEnemy.tscn" id="2_ckvm4"]
+[ext_resource type="PackedScene" path="res://GrinchEnemy.tscn" id="2_ckvm4"]
 [ext_resource type="Script" path="res://player.gd" id="4_y20rh"]
 [ext_resource type="PackedScene" uid="uid://c1qlcuxauoqpn" path="res://santa4.glb" id="5_rcowu"]
 [ext_resource type="Script" path="res://grinch_spawner.gd" id="6_v8d0k"]

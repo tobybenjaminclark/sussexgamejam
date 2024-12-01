@@ -10,7 +10,7 @@ func _ready():
 	set_as_top_level(true)  # Correct method to make the bullet move independently
 
 	# Find the player node (adjust the path as needed)
-	player = get_node_or_null("/root/Node3D/Player")
+	player = get_node_or_null("/root/Node3D2/Santa")
 	if player:
 		# Calculate direction towards the player
 		direction = (player.global_transform.origin - global_transform.origin).normalized()
