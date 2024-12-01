@@ -55,4 +55,3 @@ func _physics_process(delta: float) -> void:
 	
 	# Apply movement
 	move_and_slide()
-
