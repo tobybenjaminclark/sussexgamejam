@@ -644,10 +644,10 @@ character_scene = ExtResource("3_146x3")
 wait_time = 10.0
 
 [node name="Node3D" parent="GrinchSpawner" instance=ExtResource("11_666bv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.168549, 0.664038, -0.112147)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.168549, 2.00885, -0.112147)
 
 [node name="TowerBase" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -9.12827, 0, 2.00151)
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -7.14203, 0, 5.97398)
 material_override = SubResource("StandardMaterial3D_37nij")
 mesh = ExtResource("13_y14dl")
 
@@ -690,6 +690,6 @@ light_color = Color(1, 0.529412, 0.352941, 1)
 [node name="Label" type="Label" parent="CanvasLayer"]
 offset_right = 40.0
 offset_bottom = 23.0
-text = "money: 0"
+text = "Goins: 0"
 
 [connection signal="timeout" from="GrinchSpawner/Timer" to="GrinchSpawner" method="_on_timer_timeout"]

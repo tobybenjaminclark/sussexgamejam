@@ -74,7 +74,7 @@ func _update_money_label_if_needed() -> void:
 # Method to update the money label UI
 func _update_money_label() -> void:
 	if money_label:
-		money_label.text = "Money: %d" % money
+		money_label.text = "Goins: %d" % money
 
 # Example method to simulate adding money (you can call this when the player collects a coin, etc.)
 func add_money(amount: int) -> void:
