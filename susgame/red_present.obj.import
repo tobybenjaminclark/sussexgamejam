@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://b222mu87v60rb"
+path="res://.godot/imported/red_present.obj-b0a1c763bf918a1d9a97ae53b3e9097c.mesh"
+
+[deps]
+
+files=["res://.godot/imported/red_present.obj-b0a1c763bf918a1d9a97ae53b3e9097c.mesh"]
+
+source_file="res://red_present.obj"
+dest_files=["res://.godot/imported/red_present.obj-b0a1c763bf918a1d9a97ae53b3e9097c.mesh", "res://.godot/imported/red_present.obj-b0a1c763bf918a1d9a97ae53b3e9097c.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

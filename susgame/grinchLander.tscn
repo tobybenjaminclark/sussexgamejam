@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dunmoxx1pjv6o"]
+[gd_scene load_steps=17 format=3 uid="uid://bpxmkhpgd5pvv"]
 
 [ext_resource type="Texture2D" uid="uid://ig5axphbr4fe" path="res://grinch_lander.png" id="1_1lqgw"]
 [ext_resource type="ArrayMesh" uid="uid://cr36b8x5wfrvx" path="res://grinch_lander.obj" id="2_a124x"]
@@ -68,14 +68,19 @@ particles_anim_loop = false
 [sub_resource type="QuadMesh" id="QuadMesh_1ay4y"]
 material = SubResource("StandardMaterial3D_advev")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_4f4q8"]
+
 [node name="Node3D" type="Node3D"]
 
-[node name="GrinchLander" type="MeshInstance3D" parent="."]
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+
+[node name="GrinchLander" type="MeshInstance3D" parent="RigidBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0154504, 0.139987, 0.00738243)
 material_override = SubResource("StandardMaterial3D_ykgn3")
 mesh = ExtResource("2_a124x")
+skeleton = NodePath("../..")
 
-[node name="GPUParticles3D3" type="GPUParticles3D" parent="GrinchLander"]
+[node name="GPUParticles3D3" type="GPUParticles3D" parent="RigidBody3D/GrinchLander"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.636876, -0.00193677)
 amount = 15
 lifetime = 0.2
@@ -84,3 +89,6 @@ randomness = 1.0
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_0csih")
 draw_pass_1 = SubResource("QuadMesh_1ay4y")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("BoxShape3D_4f4q8")
