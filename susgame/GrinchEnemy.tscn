@@ -1,20 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://cwh1wpls5gq4m"]
+[gd_scene load_steps=5 format=3 uid="uid://drs0krep1xfd0"]
 
 [ext_resource type="Script" path="res://grinch.gd" id="1_34apq"]
 [ext_resource type="PackedScene" uid="uid://cosfth6ws1f02" path="res://grinch2.glb" id="2_ihtp6"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tt8iy"]
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mlx42"]
+
 [node name="Grinch" type="CharacterBody3D"]
 transform = Transform3D(0.999997, 0, 0, 0, 0.999997, 0, 0, 0, 0.999997, 0.15934, 0.5772, 0.0145868)
 motion_mode = 1
 script = ExtResource("1_34apq")
 
-[node name="RigidBody3D" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.174045)
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.106148, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.106148, 6.51926e-09)
 shape = SubResource("CapsuleShape3D_tt8iy")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
@@ -27,3 +26,9 @@ transform = Transform3D(-30, 0, -2.62268e-06, 0, 30, 0, 2.62268e-06, 0, -30, -0.
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 debug_enabled = true
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -0.251294, 0, 0)
+shape = SubResource("CapsuleShape3D_mlx42")
