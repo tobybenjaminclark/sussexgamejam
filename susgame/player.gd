@@ -1,57 +1,57 @@
 extends CharacterBody3D
 
-const SPEED: float = 5.0
-const JUMP_VELOCITY: float = 4.5
-const GRAVITY: float = -9.8
 
-var money: int = 0
+const SPEED = 2
+const JUMP_VELOCITY = 4.5
 
-@export var money_label: Label  # Allows setting the Label path in the Inspector
-
-# Reference to the coin area
-var coin: Area3D  # The coin area will be assigned in the _ready() function
+var animation_player : AnimationPlayer  # Declare AnimationPlayer variable
 
 func _ready() -> void:
-	# Get the reference to the coin node and connect the signal
-	coin = get_parent().get_node("Goin")  # Replace "Coin" with the correct path to your coin node
-	if coin:
-		coin.connect("body_entered", Callable(self, "_on_coin_collected"))
+	animation_player = $santa4/AnimationPlayer
+	if animation_player == null:
+		print("AnimationPlayer not found!")
 	else:
-		print("Error: Coin node not found. Make sure the path is correct.")
+		print("AnimationPlayer initialized successfully")
 
-# Method to add money
-func add_money(amount: int) -> void:
-	money += amount
-
-# Method to remove money
-func remove_money(amount: int) -> void:
-	money = max(0, money - amount)
-
-# Handle physics-based movement and jumping
 func _physics_process(delta: float) -> void:
 	# Handle jump logic: Trigger when the user presses the jump button and the player is on the ground
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = JUMP_VELOCITY  # Set the y velocity to make the player jump
+		velocity.y = JUMP_VELOCITY
 
-	# Get the input direction for horizontal movement (x and z axis).
-	var input_dir := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	# Get the input direction and handle the movement/deceleration using WASD.
+	var direction := Vector3.ZERO
+	
+	if Input.is_action_pressed("move_left"):  # A or left arrow
+		direction.x = -1
+	elif Input.is_action_pressed("move_right"):  # D or right arrow
+		direction.x = 1
+	
+	if Input.is_action_pressed("move_up"):  # W or up arrow
+		direction.z = -1
+	elif Input.is_action_pressed("move_down"):  # S or down arrow
+		direction.z = 1
 
-	# Handle horizontal movement (x and z).
-	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
+
+	# Normalize to prevent faster diagonal movement
+	if direction.length() > 0:
+		direction = direction.normalized()
+
+	# Set the movement velocity
+	velocity.x = direction.x * SPEED
+	velocity.z = direction.z * SPEED
+	
+	# Rotate the player to face the movement direction
+	if direction != Vector3.ZERO:
+		rotation.y = -atan2(direction.x, 0-direction.z)  # Rotate to face the movement direction
+
+	# Play the walking animation if moving
+	if direction != Vector3.ZERO:
+		if not animation_player.is_playing() or animation_player.current_animation != "walk":
+			animation_player.play("walk")
 	else:
-		# Smooth stopping if no input is given
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
-
-
-	# Move the character using the calculated velocity.
+		# If not moving, play idle animation
+		if not animation_player.is_playing() or animation_player.current_animation != "idle":
+			animation_player.play("idle")
+	
+	# Apply movement
 	move_and_slide()
-
-# This function is called when the player collides with a coin
-func _on_coin_collected(body: Node) -> void:
-	if body.is_in_group("coin"):  # Check if the body that entered the area is a coin
-		add_money(10)  # Add 10 money (you can change this amount)
-		body.queue_free()  # Remove the coin from the scene after being collected

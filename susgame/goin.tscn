@@ -1,3 +1,4 @@
+
 [gd_scene load_steps=7 format=3 uid="uid://b332hdlkphkcv"]
 
 [ext_resource type="Script" path="res://spingoin.gd" id="1_1y553"]
@@ -7,6 +8,7 @@
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ylcsy"]
 albedo_texture = ExtResource("2_fjeu8")
+
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_2s4ll"]
 
@@ -25,6 +27,7 @@ script = ExtResource("1_363ng")
 shape = SubResource("SphereShape3D_2s4ll")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="." groups=["Goin"]]
+
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.890494, 0)
 light_color = Color(0, 1, 0, 1)
 light_energy = 2.102
