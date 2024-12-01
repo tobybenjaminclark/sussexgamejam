@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dpmp4uig8qu0v"
+path="res://.godot/imported/conveyor_2.obj-8fced811db209c3629e076be62375a6d.mesh"
+
+[deps]
+
+files=["res://.godot/imported/conveyor_2.obj-8fced811db209c3629e076be62375a6d.mesh"]
+
+source_file="res://conveyor_2.obj"
+dest_files=["res://.godot/imported/conveyor_2.obj-8fced811db209c3629e076be62375a6d.mesh", "res://.godot/imported/conveyor_2.obj-8fced811db209c3629e076be62375a6d.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

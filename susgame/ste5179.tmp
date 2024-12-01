@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://dmvijntopcso0"]
+
+[ext_resource type="Texture2D" uid="uid://dawev6gc73t2o" path="res://stella_can.png" id="1_rjrqs"]
+[ext_resource type="ArrayMesh" uid="uid://c3jsdfftoa328" path="res://stella_can.obj" id="2_36b1t"]
+[ext_resource type="Script" path="res://stella_can.gd" id="3_1dpcr"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_82nm1"]
+albedo_texture = ExtResource("1_rjrqs")
+
+[node name="StellaPickup" type="Node3D"]
+
+[node name="StellaCan" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.105213, 0, 0.0974298)
+material_override = SubResource("StandardMaterial3D_82nm1")
+mesh = ExtResource("2_36b1t")
+script = ExtResource("3_1dpcr")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="StellaCan"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.0888223, 7.01376, -0.112268)
+light_color = Color(1, 1, 0.615686, 1)
+light_energy = 2.132
+light_indirect_energy = 3.424
+light_volumetric_fog_energy = 0.0
+spot_range = 6.6148
+spot_angle = 19.9152

@@ -1,0 +1,94 @@
+[gd_scene load_steps=17 format=3 uid="uid://bpxmkhpgd5pvv"]
+
+[ext_resource type="Texture2D" uid="uid://ig5axphbr4fe" path="res://grinch_lander.png" id="1_1lqgw"]
+[ext_resource type="ArrayMesh" uid="uid://cr36b8x5wfrvx" path="res://grinch_lander.obj" id="2_a124x"]
+[ext_resource type="Texture2D" uid="uid://bawjdyf22dryf" path="res://muzzleflash.png" id="3_5bhf6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ykgn3"]
+albedo_texture = ExtResource("1_1lqgw")
+
+[sub_resource type="Curve" id="Curve_pem8y"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.707469, 0.833743), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_s525e"]
+curve = SubResource("Curve_pem8y")
+
+[sub_resource type="Gradient" id="Gradient_jhgxw"]
+offsets = PackedFloat32Array(0.00452489, 0.285303, 0.538905, 1)
+colors = PackedColorArray(1, 0.961148, 0.438937, 1, 0.86753, 0.549312, 0, 1, 0.615923, 0.0540121, 9.62615e-08, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_4ubfc"]
+gradient = SubResource("Gradient_jhgxw")
+
+[sub_resource type="Curve" id="Curve_j3s7t"]
+max_value = 25.0
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.46888, 2.05976), 0.0, 0.0, 0, 0, Vector2(0.840249, 6.93556), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_ohgcw"]
+curve = SubResource("Curve_j3s7t")
+
+[sub_resource type="Curve" id="Curve_umqgv"]
+_data = [Vector2(0, 0.376537), 0.0, 0.0, 0, 0, Vector2(0.224066, 0.971225), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_nk3vq"]
+curve = SubResource("Curve_umqgv")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0csih"]
+emission_shape_offset = Vector3(0, 0.08, 0)
+angle_min = -720.0
+angle_max = 720.0
+inherit_velocity_ratio = -0.312
+direction = Vector3(0, -1, 0)
+spread = 6.493
+initial_velocity_min = 20.0
+initial_velocity_max = 40.0
+gravity = Vector3(0, 0, 0)
+scale_min = 1.5
+scale_max = 3.0
+scale_curve = SubResource("CurveTexture_nk3vq")
+color = Color(0.97339, 0.792687, 0.790462, 1)
+color_ramp = SubResource("GradientTexture1D_4ubfc")
+alpha_curve = SubResource("CurveTexture_s525e")
+emission_curve = SubResource("CurveTexture_ohgcw")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_advev"]
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.992157, 1, 0.4, 1)
+albedo_texture = ExtResource("3_5bhf6")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_1ay4y"]
+material = SubResource("StandardMaterial3D_advev")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4f4q8"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+
+[node name="GrinchLander" type="MeshInstance3D" parent="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0154504, 0.139987, 0.00738243)
+material_override = SubResource("StandardMaterial3D_ykgn3")
+mesh = ExtResource("2_a124x")
+skeleton = NodePath("../..")
+
+[node name="GPUParticles3D3" type="GPUParticles3D" parent="RigidBody3D/GrinchLander"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.636876, -0.00193677)
+amount = 15
+lifetime = 0.2
+explosiveness = 0.1
+randomness = 1.0
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_0csih")
+draw_pass_1 = SubResource("QuadMesh_1ay4y")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("BoxShape3D_4f4q8")

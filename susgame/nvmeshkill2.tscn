@@ -1,0 +1,217 @@
+[gd_scene load_steps=39 format=3 uid="uid://duhdlsvkiqv8o"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_ke6en"]
+[ext_resource type="Script" path="res://camera.gd" id="2_fnpfe"]
+[ext_resource type="PackedScene" uid="uid://cwh1wpls5gq4m" path="res://GrinchEnemy.tscn" id="3_aqoi8"]
+[ext_resource type="Script" path="res://player.gd" id="4_lk115"]
+[ext_resource type="PackedScene" uid="uid://c1qlcuxauoqpn" path="res://santa4.glb" id="5_sr741"]
+[ext_resource type="ArrayMesh" uid="uid://c5ky0qrohm8ry" path="res://tree_1.obj" id="6_7e8jv"]
+[ext_resource type="Script" path="res://collision.gd" id="7_mynw8"]
+[ext_resource type="ArrayMesh" uid="uid://d33r8ly0nkffk" path="res://yellow_present_long.obj" id="8_8onjx"]
+[ext_resource type="ArrayMesh" uid="uid://b222mu87v60rb" path="res://red_present.obj" id="9_qu25o"]
+[ext_resource type="ArrayMesh" uid="uid://dlbbmdg6quna" path="res://green_present_flat.obj" id="10_mnjie"]
+[ext_resource type="Script" path="res://grinch_spawner.gd" id="11_qm2aw"]
+[ext_resource type="PackedScene" uid="uid://bpxmkhpgd5pvv" path="res://grinchLander.tscn" id="12_3o6c0"]
+[ext_resource type="Texture2D" uid="uid://dbp8qnywugwvu" path="res://assets/tower_base.png" id="13_0r54d"]
+[ext_resource type="ArrayMesh" uid="uid://curqt0vakt7dl" path="res://assets/tower_base.obj" id="14_vhkpq"]
+[ext_resource type="Script" path="res://tower.gd" id="15_4l6n7"]
+[ext_resource type="PackedScene" uid="uid://df28okax5a6yq" path="res://tower_bullet.tscn" id="16_gib7y"]
+[ext_resource type="AudioStream" uid="uid://b48gm2ep2j0te" path="res://gun.mp3" id="17_w4ni7"]
+[ext_resource type="Texture2D" uid="uid://c1tyrenn48s3e" path="res://assets/tower_head.png" id="18_ncokc"]
+[ext_resource type="ArrayMesh" uid="uid://bnrtj0eleuson" path="res://assets/tower_head.obj" id="19_3ycj5"]
+[ext_resource type="Texture2D" uid="uid://bawjdyf22dryf" path="res://muzzleflash.png" id="20_s23cq"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tt8iy"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_0jtq3"]
+vertices = PackedVector3Array(0.252266, 0.459642, 10.9985, 0.252266, 0.459642, 8.74852, -0.747734, 0.459642, 8.74852, -1.99773, 0.459642, 7.74852, -19.9977, 0.459642, 10.9985, -2.24773, 0.459642, 2.49852, 0.502266, 0.459642, 1.24852, 0.502266, 0.459642, -11.0015, -3.24773, 0.459642, 4.49852, -19.9977, 0.459642, -11.0015, -3.24773, 0.459642, 5.74852, 1.50227, 0.459642, 1.49852, 2.00227, 0.459642, 2.49852, 3.50227, 0.459642, 3.24852, 20.0023, 0.459642, 10.9985, 20.0023, 0.459642, -11.0015, 1.75227, 0.459642, 8.49852, 3.75227, 0.459642, 5.99852)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(2, 0, 3), PackedInt32Array(3, 0, 4), PackedInt32Array(7, 6, 5), PackedInt32Array(5, 8, 7), PackedInt32Array(7, 8, 9), PackedInt32Array(9, 8, 4), PackedInt32Array(8, 10, 4), PackedInt32Array(10, 3, 4), PackedInt32Array(12, 11, 13), PackedInt32Array(13, 11, 7), PackedInt32Array(13, 7, 15), PackedInt32Array(13, 15, 14), PackedInt32Array(0, 1, 16), PackedInt32Array(16, 17, 0), PackedInt32Array(0, 17, 14), PackedInt32Array(11, 6, 7), PackedInt32Array(14, 17, 13)]
+agent_height = 2.0
+agent_radius = 1.5
+agent_max_climb = 0.2
+agent_max_slope = 11.63
+
+[sub_resource type="BoxMesh" id="BoxMesh_rj4lc"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4oend"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_37nij"]
+albedo_texture = ExtResource("13_0r54d")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1pjon"]
+albedo_texture = ExtResource("18_ncokc")
+
+[sub_resource type="Curve" id="Curve_e2hsu"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.707469, 0.833743), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_bkd2d"]
+curve = SubResource("Curve_e2hsu")
+
+[sub_resource type="Gradient" id="Gradient_nkfx6"]
+offsets = PackedFloat32Array(0.00452489, 0.549774, 1)
+colors = PackedColorArray(1, 0.0705882, 0, 1, 1, 0.54902, 0, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_um84t"]
+gradient = SubResource("Gradient_nkfx6")
+
+[sub_resource type="Curve" id="Curve_ykyr4"]
+max_value = 25.0
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.46888, 2.05976), 0.0, 0.0, 0, 0, Vector2(0.840249, 6.93556), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_5pb7t"]
+curve = SubResource("Curve_ykyr4")
+
+[sub_resource type="Curve" id="Curve_qehx7"]
+_data = [Vector2(0, 0.376537), 0.0, 0.0, 0, 0, Vector2(0.224066, 0.971225), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_3v767"]
+curve = SubResource("Curve_qehx7")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8ga0f"]
+angle_min = -720.0
+angle_max = 720.0
+gravity = Vector3(0, 0, 0)
+scale_min = 2.0
+scale_max = 4.0
+scale_curve = SubResource("CurveTexture_3v767")
+color = Color(1, 0.427451, 0, 1)
+color_ramp = SubResource("GradientTexture1D_um84t")
+alpha_curve = SubResource("CurveTexture_bkd2d")
+emission_curve = SubResource("CurveTexture_5pb7t")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yi3mo"]
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 1, 0, 1)
+albedo_texture = ExtResource("20_s23cq")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_8kub0"]
+material = SubResource("StandardMaterial3D_yi3mo")
+
+[sub_resource type="AudioStream" id="AudioStream_odu6n"]
+
+[node name="Node3D2" type="Node3D"]
+transform = Transform3D(1.00693, 0, 0, 0, 1.00693, 0, 0, 0, 1.00693, 0, 0, 0)
+script = ExtResource("1_ke6en")
+
+[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
+transform = Transform3D(0.993113, 0, 0, 0, 0.993113, 0, 0, 0, 0.993113, 0, 0.308953, 0.307294)
+script = ExtResource("2_fnpfe")
+target = NodePath("../Santa")
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.0351089, 0.999384, 0, -0.999384, -0.0351089, 0, 3.60055, 0)
+
+[node name="Grinch" parent="." instance=ExtResource("3_aqoi8")]
+transform = Transform3D(0.999997, 0, 0, 0, 0.999997, 0, 0, 0, 0.999997, 6.51343, 0.5772, 0.0145868)
+
+[node name="Santa" type="CharacterBody3D" parent="."]
+transform = Transform3D(0.999999, 0, 0, 0, 0.999999, 0, 0, 0, 0.999999, -0.0832849, 1.12209, -0.285727)
+motion_mode = 1
+script = ExtResource("4_lk115")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="Santa"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Santa"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.106148, 0)
+shape = SubResource("CapsuleShape3D_tt8iy")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Santa"]
+transform = Transform3D(0.993118, 0, 0, 0, 0.993118, 0, 0, 0, 0.993118, -0.0042544, 0.552637, 0.00198454)
+
+[node name="Node" type="Node" parent="Santa"]
+
+[node name="santa4" parent="Santa" instance=ExtResource("5_sr741")]
+transform = Transform3D(-29.9842, 0, 0.973197, 0, 30, 0, -0.973197, 0, -29.9842, 0, -1.10603, 0)
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_0jtq3")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D"]
+transform = Transform3D(43.0422, 0, 0, 0, 0.250963, 0, 0, 0, 24.9705, 0.023361, -0.164877, -0.0162342)
+mesh = SubResource("BoxMesh_rj4lc")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/MeshInstance3D/StaticBody3D"]
+shape = SubResource("BoxShape3D_4oend")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="NavigationRegion3D"]
+
+[node name="Tree1" type="MeshInstance3D" parent="NavigationRegion3D/MeshInstance3D2"]
+transform = Transform3D(0.993117, 0, 0, 0, 0.993117, 0, 0, 0, 0.993117, 0.291109, -0.0393951, 6.42858)
+mesh = ExtResource("6_7e8jv")
+skeleton = NodePath("../../..")
+script = ExtResource("7_mynw8")
+
+[node name="YellowPresentLong" type="MeshInstance3D" parent="NavigationRegion3D/MeshInstance3D2"]
+transform = Transform3D(0.975795, 0, 0.184678, 0, 0.993117, 0, -0.184678, 0, 0.975795, 0.302903, -0.60656, 3.40278)
+mesh = ExtResource("8_8onjx")
+skeleton = NodePath("../../..")
+
+[node name="RedPresent" type="MeshInstance3D" parent="NavigationRegion3D/MeshInstance3D2"]
+transform = Transform3D(0.947426, 0.00803947, -0.29766, -0.00693208, 0.993082, 0.00475782, 0.297688, -0.00246122, 0.947448, -0.667821, -0.509462, 4.75688)
+mesh = ExtResource("9_qu25o")
+skeleton = NodePath("../..")
+
+[node name="GreenPresentFlat" type="MeshInstance3D" parent="NavigationRegion3D/MeshInstance3D2"]
+transform = Transform3D(0.993117, 0, 0, 0, 0.993117, 0, 0, 0, 0.993117, 1.29662, -0.597374, 4.83318)
+mesh = ExtResource("10_mnjie")
+skeleton = NodePath("../..")
+
+[node name="GrinchSpawner" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.16049, 9.47111e-07, -7.63547)
+script = ExtResource("11_qm2aw")
+character_scene = ExtResource("3_aqoi8")
+
+[node name="Timer" type="Timer" parent="GrinchSpawner"]
+wait_time = 10.0
+
+[node name="Node3D" parent="GrinchSpawner" instance=ExtResource("12_3o6c0")]
+transform = Transform3D(0.704659, 0, 0, 0, 0.704659, 0, 0, 0, 0.704659, -0.168549, 3.6417, -0.112147)
+
+[node name="TowerBase" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -9.12827, 0, 2.00151)
+material_override = SubResource("StandardMaterial3D_37nij")
+mesh = ExtResource("14_vhkpq")
+
+[node name="Node3D" type="Node3D" parent="TowerBase"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.87153, 0)
+script = ExtResource("15_4l6n7")
+detection_range = 999.0
+bullet_scene = ExtResource("16_gib7y")
+gun_sound = ExtResource("17_w4ni7")
+
+[node name="TowerHead" type="MeshInstance3D" parent="TowerBase/Node3D"]
+transform = Transform3D(-1, 0.000131563, -0.000587184, 0.000133063, 0.999997, -0.00256581, 0.000586846, -0.00256589, -0.999997, 0.026062, -0.461343, -1.62176)
+material_override = SubResource("StandardMaterial3D_1pjon")
+mesh = ExtResource("19_3ycj5")
+skeleton = NodePath("../../..")
+
+[node name="MuzzleNode" type="Node3D" parent="TowerBase/Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.596558, -2.37428)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="TowerBase/Node3D/MuzzleNode"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0539751, -0.288267)
+emitting = false
+amount = 4
+lifetime = 0.2
+one_shot = true
+explosiveness = 0.1
+randomness = 1.0
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_8ga0f")
+draw_pass_1 = SubResource("QuadMesh_8kub0")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="TowerBase/Node3D"]
+stream = SubResource("AudioStream_odu6n")
+
+[connection signal="timeout" from="GrinchSpawner/Timer" to="GrinchSpawner" method="_on_timer_timeout"]

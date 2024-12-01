@@ -2,10 +2,11 @@
 
 [ext_resource type="Script" path="res://camera.gd" id="1_bk73r"]
 [ext_resource type="Script" path="res://main.gd" id="1_n44o6"]
-[ext_resource type="PackedScene" path="res://GrinchEnemy.tscn" id="2_ckvm4"]
+[ext_resource type="PackedScene" uid="uid://cwh1wpls5gq4m" path="res://GrinchEnemy.tscn" id="2_ckvm4"]
 [ext_resource type="Script" path="res://player.gd" id="4_y20rh"]
 [ext_resource type="PackedScene" uid="uid://c1qlcuxauoqpn" path="res://santa4.glb" id="5_rcowu"]
 [ext_resource type="Script" path="res://grinch_spawner.gd" id="6_v8d0k"]
+[ext_resource type="PackedScene" uid="uid://bpxmkhpgd5pvv" path="res://grinchLander.tscn" id="7_il2is"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tt8iy"]
 
@@ -20,8 +21,6 @@ agent_max_slope = 11.63
 [sub_resource type="BoxMesh" id="BoxMesh_rj4lc"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4oend"]
-
-[sub_resource type="TorusMesh" id="TorusMesh_gpi78"]
 
 [node name="Node3D2" type="Node3D"]
 transform = Transform3D(1.00693, 0, 0, 0, 1.00693, 0, 0, 0, 1.00693, 0, 0, 0)
@@ -60,15 +59,6 @@ transform = Transform3D(-29.9842, 0, 0.973197, 0, 30, 0, -0.973197, 0, -29.9842,
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_0jtq3")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D"]
-transform = Transform3D(43.0422, 0, 0, 0, 0.250963, 0, 0, 0, 24.9705, 0, -0.140506, 0)
-mesh = SubResource("BoxMesh_rj4lc")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/MeshInstance3D"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/MeshInstance3D/StaticBody3D"]
-shape = SubResource("BoxShape3D_4oend")
-
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="NavigationRegion3D"]
 transform = Transform3D(2.952, 0, 0, 0, 1.73098, 0, 0, 0, -2.16133, 0, 0.797473, 2.89388)
 mesh = SubResource("BoxMesh_rj4lc")
@@ -78,16 +68,25 @@ mesh = SubResource("BoxMesh_rj4lc")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/MeshInstance3D2/StaticBody3D"]
 shape = SubResource("BoxShape3D_4oend")
 
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(81.9066, 0, 0, 0, 0.250963, 0, 0, 0, 81.0725, 0, -0.140506, 0)
+mesh = SubResource("BoxMesh_rj4lc")
+skeleton = NodePath("../NavigationRegion3D")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("BoxShape3D_4oend")
+
 [node name="GrinchSpawner" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.16049, 9.47111e-07, -7.63547)
 script = ExtResource("6_v8d0k")
 character_scene = ExtResource("2_ckvm4")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="GrinchSpawner"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.60293, 0)
-mesh = SubResource("TorusMesh_gpi78")
-
 [node name="Timer" type="Timer" parent="GrinchSpawner"]
 wait_time = 10.0
+
+[node name="Node3D" parent="GrinchSpawner" instance=ExtResource("7_il2is")]
+transform = Transform3D(0.993117, 0, 0, 0, 0.993117, 0, 0, 0, 0.993117, -0.0210085, 2.4941, -0.0935826)
 
 [connection signal="timeout" from="GrinchSpawner/Timer" to="GrinchSpawner" method="_on_timer_timeout"]
