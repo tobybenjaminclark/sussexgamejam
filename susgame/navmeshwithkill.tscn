@@ -169,7 +169,6 @@ mesh = ExtResource("8_32l21")
 [node name="Node3D" type="Node3D" parent="TowerBase"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.87153, 0)
 script = ExtResource("9_jv15l")
-detection_range = 999.0
 bullet_scene = ExtResource("10_wo30u")
 gun_sound = ExtResource("11_n1mpn")
 

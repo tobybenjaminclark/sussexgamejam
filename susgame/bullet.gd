@@ -49,7 +49,7 @@ func _on_Bullet_body_entered(body: Node3D):
 # Get the closest enemy in range
 func get_closest_enemy() -> Node3D:
 	var closest_enemy : Node3D = null
-	var closest_distance : float = 99999999999999  # Start with an infinitely large distance
+	var closest_distance : float = 10  # Start with an infinitely large distance
 
 	# Loop through all nodes in the "Enemy" group to find the closest one
 	for enemy in get_tree().get_nodes_in_group("Enemy"):
