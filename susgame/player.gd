@@ -1,5 +1,6 @@
 extends CharacterBody3D
 
+
 const SPEED = 2
 const JUMP_VELOCITY = 4.5
 
@@ -13,7 +14,7 @@ func _ready() -> void:
 		print("AnimationPlayer initialized successfully")
 
 func _physics_process(delta: float) -> void:
-	# Handle jump.
+	# Handle jump logic: Trigger when the user presses the jump button and the player is on the ground
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 
@@ -29,6 +30,7 @@ func _physics_process(delta: float) -> void:
 		direction.z = -1
 	elif Input.is_action_pressed("move_down"):  # S or down arrow
 		direction.z = 1
+
 
 	# Normalize to prevent faster diagonal movement
 	if direction.length() > 0:
@@ -53,3 +55,4 @@ func _physics_process(delta: float) -> void:
 	
 	# Apply movement
 	move_and_slide()
+

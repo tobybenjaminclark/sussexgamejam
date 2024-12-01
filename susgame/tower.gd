@@ -10,11 +10,15 @@ var player : Node3D  # Reference to the player
 var time_since_last_shot : float = 0.0
 var audio_player : AudioStreamPlayer3D  # Audio player for the gunshot sound
 
+
 func _ready():
+	# Add the player to the "player" group so the coin can detect it
+	add_to_group("player")
 	player = get_node_or_null("/root/Node3D/Player")
 	audio_player = get_node_or_null("AudioStreamPlayer3D")
 	if gun_sound and audio_player:
 		audio_player.stream = gun_sound
+
 
 func _process(delta):
 	if player:
@@ -26,6 +30,7 @@ func _process(delta):
 			if time_since_last_shot >= shooting_speed:
 				shoot_bullet()
 				time_since_last_shot = 0.0
+
 
 func shoot_bullet():
 	var bullet = bullet_scene.instantiate()
