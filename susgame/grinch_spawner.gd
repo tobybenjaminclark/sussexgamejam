@@ -11,7 +11,7 @@ func _ready():
 	# Create and set up the timer
 	spawn_timer = Timer.new()
 	add_child(spawn_timer)  # Add the timer as a child node
-	spawn_timer.wait_time = 1.0  # Set the interval to 5 seconds (change to your desired interval)
+	spawn_timer.wait_time = 10.0  # Set the interval to 5 seconds (change to your desired interval)
 	spawn_timer.autostart = true  # Start the timer automatically
 	spawn_timer.connect("timeout", Callable(self, "_on_Timer_timeout"))  # Connect the timer's timeout signal to the handler function
 
