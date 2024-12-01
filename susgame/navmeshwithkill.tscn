@@ -114,12 +114,6 @@ transform = Transform3D(0.999999, 0, 0, 0, 0.999999, 0, 0, 0, 0.999999, -0.08328
 motion_mode = 1
 script = ExtResource("4_4osx2")
 
-[node name="RigidBody3D" type="RigidBody3D" parent="Santa"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Santa"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.106148, 0)
-shape = SubResource("CapsuleShape3D_tt8iy")
-
 [node name="OmniLight3D" type="OmniLight3D" parent="Santa"]
 transform = Transform3D(0.993118, 0, 0, 0, 0.993118, 0, 0, 0, 0.993118, -0.0042544, 0.552637, 0.00198454)
 
@@ -127,6 +121,12 @@ transform = Transform3D(0.993118, 0, 0, 0, 0.993118, 0, 0, 0, 0.993118, -0.00425
 
 [node name="santa4" parent="Santa" instance=ExtResource("5_k0roi")]
 transform = Transform3D(-29.9842, 0, 0.973197, 0, 30, 0, -0.973197, 0, -29.9842, 0, -1.10603, 0)
+
+[node name="Area3D" type="Area3D" parent="Santa"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Santa/Area3D"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.106148, 0)
+shape = SubResource("CapsuleShape3D_tt8iy")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_0jtq3")
@@ -195,5 +195,12 @@ draw_pass_1 = SubResource("QuadMesh_8kub0")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="TowerBase/Node3D"]
 stream = SubResource("AudioStream_odu6n")
+
+[node name="CanvasGroup" type="CanvasGroup" parent="."]
+
+[node name="Label" type="Label" parent="CanvasGroup"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Money: 0"
 
 [connection signal="timeout" from="GrinchSpawner/Timer" to="GrinchSpawner" method="_on_timer_timeout"]
