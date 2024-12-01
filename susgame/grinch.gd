@@ -1,0 +1,64 @@
+extends CharacterBody3D
+
+const SPEED = 0.5
+const FOLLOW_DISTANCE = 1.0 
+
+var animation_player: AnimationPlayer
+var santa: Node3D
+@onready var nav_agent: NavigationAgent3D = $NavigationAgent3D  # Adjust the path to your NavigationAgent3D
+
+func _ready() -> void:
+	
+	animation_player = $grinch2/AnimationPlayer
+	santa = get_parent().get_node_or_null("/root/Node3D2/Santa")
+	
+	# Ensure the NavigationAgent is set up
+	nav_agent.set_target_position(santa.global_transform.origin)
+	nav_agent.radius = 2.0  # Adjust based on your NPC size
+	nav_agent.height = 2.0  # Height helps with complex surfaces, even for flat terrain
+	nav_agent.avoidance_enabled = true
+	nav_agent.target_desired_distance = 0.5  # Stop slightly before reaching target to avoid jittering
+	nav_agent.set_navigation_map(get_node("/root/Node3D2/NavigationRegion3D").navigation_mesh)
+
+	if animation_player == null:
+		print("AnimationPlayer not found!")
+	else:
+		print("AnimationPlayer initialized successfully")
+
+	if santa == null:
+		print("Santa node not found!")
+	else:
+		print("Santa initialized successfully")
+
+func _physics_process(delta: float) -> void:
+	# Calculate distance to santa
+	var distance_to_santa = global_transform.origin.distance_to(santa.global_transform.origin)
+
+	if distance_to_santa > FOLLOW_DISTANCE:
+		nav_agent.set_target_position(santa.global_transform.origin)
+		if nav_agent.is_navigation_finished() == false:
+			# Get next point in the path
+			var next_point = nav_agent.get_next_path_position()
+			var direction = (next_point - global_transform.origin).normalized()
+			
+			velocity.x = direction.x * SPEED
+			velocity.z = direction.z * SPEED
+
+			# Rotate Grinch to face Santa
+			rotation.y = atan2(-direction.x, -direction.z)
+			
+			# Play walking animation if moving
+			if not animation_player.is_playing() or animation_player.current_animation != "grinch_walk":
+				animation_player.play("grinch_walk")
+		else:
+			stop_moving()
+	else:
+		stop_moving()
+
+	move_and_slide()
+
+func stop_moving() -> void:
+	velocity.x = move_toward(velocity.x, 0, SPEED)
+	velocity.z = move_toward(velocity.z, 0, SPEED)
+	if animation_player.current_animation != "grinch_idle":
+		animation_player.play("grinch_idle")

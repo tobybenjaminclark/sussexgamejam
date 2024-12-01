@@ -5,4 +5,9 @@
     <TargetFramework Condition=" '$(GodotTargetPlatform)' == 'ios' ">net8.0</TargetFramework>
     <EnableDynamicLoading>true</EnableDynamicLoading>
   </PropertyGroup>
+
+  <PropertyGroup>
+    <StartAction>Program</StartAction>
+    <StartProgram>E:\\Program Files\\Godot\\Godot_v4.3-stable_mono_win64.exe</StartProgram>
+  </PropertyGroup>
 </Project>
