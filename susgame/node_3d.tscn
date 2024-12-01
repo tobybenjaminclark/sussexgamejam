@@ -1,5 +1,4 @@
-
-[gd_scene load_steps=6 format=3 uid="uid://dx4fo560tnmqe"]
+[gd_scene load_steps=8 format=3 uid="uid://dx4fo560tnmqe"]
 
 [ext_resource type="Script" path="res://camera.gd" id="1_x12r0"]
 [ext_resource type="Script" path="res://player.gd" id="2_4r6hv"]
@@ -10,11 +9,6 @@
 [sub_resource type="PlaneMesh" id="PlaneMesh_kq87g"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tt8iy"]
-
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_7khfc"]
-radius = 0.1
-height = 0.4
 
 [node name="Node3D2" type="Node3D"]
 transform = Transform3D(1.00693, 0, 0, 0, 1.00693, 0, 0, 0, 1.00693, 0, 0, 0)
