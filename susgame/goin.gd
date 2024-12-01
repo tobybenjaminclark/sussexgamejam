@@ -1,7 +1,6 @@
 extends Area3D
 
 @export var coin_value: int = 10
-@export var money_label: Label  # Reference to the label, set this in the inspector
 
 func _ready() -> void:
 	connect("body_entered", Callable(self, "_on_player_collected"))

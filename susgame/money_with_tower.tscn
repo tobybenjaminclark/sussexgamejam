@@ -133,7 +133,6 @@ mesh = ExtResource("5_wavxi")
 [node name="Node3D" type="Node3D" parent="TowerBase"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.87153, 0)
 script = ExtResource("6_1gweb")
-detection_range = 999.0
 bullet_scene = ExtResource("7_puhri")
 gun_sound = ExtResource("8_5xdof")
 

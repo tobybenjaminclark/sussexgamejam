@@ -20,6 +20,5 @@ func spawn_character():
 		var character = character_scene.instantiate()
 		add_child(character)
 
-
-func _on_timer_timeout() -> void:
-	spawn_character()
+		# Add the spawned character to the "enemy" group
+		character.add_to_group("Enemy")
