@@ -1,10 +1,14 @@
 extends CharacterBody3D
 
-
 const SPEED = 2
 const JUMP_VELOCITY = 4.5
 
 var animation_player : AnimationPlayer  # Declare AnimationPlayer variable
+var money: int = 0  # Track the money value
+
+@export var money_label: Label  # Reference to the Label node in the scene
+
+var last_money: int = -1  # Track the last money value to detect changes
 
 func _ready() -> void:
 	animation_player = $santa4/AnimationPlayer
@@ -12,6 +16,9 @@ func _ready() -> void:
 		print("AnimationPlayer not found!")
 	else:
 		print("AnimationPlayer initialized successfully")
+
+	# Initialize the money label
+	_update_money_label()
 
 func _physics_process(delta: float) -> void:
 	# Handle jump logic: Trigger when the user presses the jump button and the player is on the ground
@@ -30,7 +37,6 @@ func _physics_process(delta: float) -> void:
 		direction.z = -1
 	elif Input.is_action_pressed("move_down"):  # S or down arrow
 		direction.z = 1
-
 
 	# Normalize to prevent faster diagonal movement
 	if direction.length() > 0:
@@ -55,3 +61,21 @@ func _physics_process(delta: float) -> void:
 	
 	# Apply movement
 	move_and_slide()
+
+	# Update money label in every frame if money has changed
+	_update_money_label_if_needed()
+
+# Method to update the money label if the money has changed
+func _update_money_label_if_needed() -> void:
+	if money != last_money:
+		_update_money_label()  # Update the label when money changes
+		last_money = money  # Store the current money as last money
+
+# Method to update the money label UI
+func _update_money_label() -> void:
+	if money_label:
+		money_label.text = "Money: %d" % money
+
+# Example method to simulate adding money (you can call this when the player collects a coin, etc.)
+func add_money(amount: int) -> void:
+	money += amount  # Change money value, this will trigger label update in the next frame

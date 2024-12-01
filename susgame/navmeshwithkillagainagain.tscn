@@ -127,14 +127,15 @@ shadow_enabled = true
 [node name="Grinch" parent="." instance=ExtResource("3_146x3")]
 transform = Transform3D(0.999997, 0, 0, 0, 0.999997, 0, 0, 0, 0.999997, 6.51343, 0.5772, 0.0145868)
 
-[node name="Santa" type="CharacterBody3D" parent="."]
+[node name="Santa" type="CharacterBody3D" parent="." node_paths=PackedStringArray("money_label") groups=["Player"]]
 transform = Transform3D(0.999999, 0, 0, 0, 0.999999, 0, 0, 0, 0.999999, -0.0832849, 1.12209, -0.285727)
 motion_mode = 1
 script = ExtResource("4_7t2k6")
+money_label = NodePath("../CanvasLayer/Label")
 
 [node name="RigidBody3D" type="RigidBody3D" parent="Santa"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Santa"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Santa" groups=["Player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.106148, 0)
 shape = SubResource("CapsuleShape3D_tt8iy")
 
@@ -683,5 +684,12 @@ stream = SubResource("AudioStream_odu6n")
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(0.993118, 0, 0, 0, 0.993118, 0, 0, 0, 0.993118, -8.5717, 0.78822, -7.88067)
 light_color = Color(1, 0.529412, 0.352941, 1)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "money: 0"
 
 [connection signal="timeout" from="GrinchSpawner/Timer" to="GrinchSpawner" method="_on_timer_timeout"]
